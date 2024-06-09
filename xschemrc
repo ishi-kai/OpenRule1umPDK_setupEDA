@@ -1,0 +1,5 @@
+set XSCHEM_LIBRARY_PATH {}
+append XSCHEM_LIBRARY_PATH ${XSCHEM_SHAREDIR}/xschem_library/devices
+append XSCHEM_LIBRARY_PATH :[pwd]
+set PDK "$env(HOME)/.klayout/salt/OpenRule1um/tech/tech"
+append XSCHEM_LIBRARY_PATH :$PDK/symbols/Xschem
