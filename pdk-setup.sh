@@ -193,7 +193,7 @@ if [ ! -d "$SRC_DIR/AnagixLoader" ]; then
 	cp -aR AnagixLoader $HOME/.klayout/salt/
 else
 	echo ">>>> Updating AnagixLoader"
-	cd $SRC_DIR/.klayout/salt/AnagixLoader || exit
+	cd $SRC_DIR/AnagixLoader || exit
         git pull
 	cp -aR ./* $HOME/.klayout/salt/AnagixLoader/
 fi
