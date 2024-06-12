@@ -198,11 +198,11 @@ else
 	cp -aR ./* $HOME/.klayout/salt/AnagixLoader/
 fi
 
-if [ ! -d "$HOME/.xschem" ]; then
-	mkdir $HOME/.xschem
+if [ ! -d "$HOME/.xschem/symbols" ]; then
+	mkdir -p $HOME/.xschem/symbols
 	cd $my_dir
 	cp xschemrc $HOME/.xschem/
-	cp -aR ./symbols/Xschem/ $HOME/.klayout/salt/OpenRule1um/tech/tech/symbols/
+	cp -aR ./symbols/Xschem/PTS06/ $HOME/.xschem/symbols/
 fi
 
 # Finished

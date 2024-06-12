@@ -12,10 +12,12 @@ WSL2 (Windows Subsystem for Linux)上のUbuntu22.04で動作します。
 xschemを`Tools → Execute TCL command`で下記のコマンドを実行する。  
 
 ```
-tcleval(.include "$PDK/models/OR1_mos")
+tcleval(.include "$PDK/mos_PTS06.lib")
+tcleval(.include "$PDK/stdcells_PTS06.lib")
 ```
 
-「.include "$PDK/models/OR1_mos"」を回路のコマンドに書いてもOKです。  
+「.include "$PDK/mos_PTS06.lib"」や「.include "$PDK/stdcells_PTS06.lib"」を回路のコマンドに書いてもOKです。  
+
 
 ## klayoutの追加設定
 ### テクノロジーの選択
