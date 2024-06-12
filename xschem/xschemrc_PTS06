@@ -1,0 +1,8 @@
+set XSCHEM_LIBRARY_PATH {}
+append XSCHEM_LIBRARY_PATH ${XSCHEM_SHAREDIR}/xschem_library/
+append XSCHEM_LIBRARY_PATH :[pwd]
+set PDK "$env(HOME)/.xschem/symbols/OR1/"
+set LIB "$env(HOME)/.xschem/lib/PTS06/"
+set XSCHEM_START_WINDOW $env(HOME)/.xschem/title_PTS06.sch
+append XSCHEM_LIBRARY_PATH :$PDK/
+append XSCHEM_LIBRARY_PATH :$LIB/
