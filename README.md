@@ -1,6 +1,6 @@
 # 何か？
 ISHI会のファニテックシャトル応募用のレイアウトを作るための環境構築用スクリプトです。  
-WSL2 (Windows Subsystem for Linux)上のUbuntu22.04で動作します。  
+WSL2 (Windows Subsystem for Linux)上のUbuntu22.04とUbuntu22.04とMac Mコアシリーズで動作します。  
 
 # 実行方法
 下記のコマンドを実行するだけです。  
