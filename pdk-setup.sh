@@ -230,11 +230,29 @@ echo ">>>> Installing KLayout-$KLAYOUT_VERSION"
 if [ "$(uname)" == 'Darwin' ]; then
   OS='Mac'
   python3 -m pip install docopt pandas scipy matplotlib pip-autoremove --break-system-packages
-  brew install klayout
+#  brew install klayout
 #  wget https://www.klayout.org/downloads/MacOS/HW-klayout-$KLAYOUT_VERSION-macOS-$MAC_OS_NAME-1-qt5MP-RsysPhb311.dmg
 #  hdiutil mount HW-klayout-$KLAYOUT_VERSION-macOS-$MAC_OS_NAME-1-qt5MP-RsysPhb311.dmg
 #  cd /Volumes/KLayout/
 #  hdiutil detach /Volumes/KLayout/
+  if [ ! -d "$SRC_DIR/klayout" ]; then
+	  echo ">>>> Building klayout"
+    brew install qt5
+    brew install libgit2
+    git clone https://github.com/KLayout/klayout.git "$SRC_DIR/klayout"
+    cd "$SRC_DIR/klayout" || exit
+  else
+	  echo ">>>> Updating klayout"
+    cd "$SRC_DIR/klayout" || exit
+    git pull
+  fi
+  python3 build4mac.py -r HB33 -p HBAuto -q Qt5Brew -m ‘—jobs=8’ -n -u
+  mkdir -p $HOME/bin/klayout.app
+  cp -aR 	cd $SRC_DIR/klayout/qt5Brew.bin.macos-Sonoma-release-Rhb33Phbauto/* $HOME/bin/klayout.app/
+  echo 'export PATH="$HOME/bin/:$PATH"' >> ~/.zshrc
+  export PATH="$HOME/bin/:$PATH"
+	cp $my_dir/klayout.sh $HOME/bin/
+  chmod +x $HOME/bin/klayout.sh
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
   OS='Linux'
   wget https://www.klayout.org/downloads/Ubuntu-22/klayout_$KLAYOUT_VERSION-1_amd64.deb
@@ -317,16 +335,14 @@ if [ ! -d "$SRC_DIR/ngspice" ]; then
     brew install flex
     brew install lex
     brew install fontconfig
-#    brew install m4
+    brew install m4
 #    echo 'export PATH="/opt/homebrew/opt/m4/bin:$PATH"' >> ~/.zshrc    
-#    export PATH="/opt/homebrew/opt/m4/bin:$PATH"
+    export PATH="/opt/homebrew/opt/m4/bin:$PATH"
     brew link bison --force
 #    echo 'export PATH="/opt/homebrew/opt/bison/bin:$PATH"' >> ~/.zshrc
 #    export PATH="/opt/homebrew/opt/bison/bin:$PATH"
 #    export LDFLAGS="-L/opt/homebrew/opt/bison/lib $LDFLAGS"
     brew install libomp
-
-
   elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     OS='Linux'
     sudo apt -qq install -y libxaw7-dev libxmu-dev libxext-dev libxft-dev \
@@ -350,7 +366,7 @@ if [ ! -d "$SRC_DIR/ngspice" ]; then
 	  ./configure --disable-debug --with-readline=no --enable-openmp --with-x CXX="g++$CXX_VERSION" CC="gcc$CC_VERSION" CFLAGS="-m64 -O2 -Wno-error=implicit-function-declaration -Wno-error=implicit-int" LDFLAGS="-m64 -s" CPPFLAGS="-I/opt/homebrew/opt/freetype2/include/freetype2/ -I/opt/homebrew/opt/libomp/include/" LDFLAGS="-L/opt/homebrew/opt/freetype2/lib/ -L/opt/homebrew/opt/fontconfig/lib/ -L/opt/homebrew/opt/libomp/lib/ -L/usr/X11/lib/"
 	  sed -i '' 's/TCGETS/TIOCMGET/g' src/frontend/parser/complete.c
 	  sed -i '' 's/TCSETS/TIOCMSET/g' src/frontend/parser/complete.c
-    sed -i '' 's/LEX = :/LEX = lex/g' src/xspice/cmpp/ifx_lex.l
+    sed -i '' 's/LEX = :/LEX = lex/g' src/xspice/cmpp/Makefile
   elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     OS='Linux'
 	  ./configure --disable-debug --with-readline=yes --enable-openmp CFLAGS="-m64 -O2" LDFLAGS="-m64 -s" 
@@ -366,6 +382,7 @@ else
 	echo ">>>> Updating ngspice"
         cd "$SRC_DIR/ngspice" || exit
         git pull
+  export PATH="/opt/homebrew/opt/m4/bin:$PATH"
 fi
 make clean
 make -j"$(nproc)" && sudo make install
@@ -409,8 +426,8 @@ if [ ! -d "$HOME/.xschem/symbols" ]; then
 	cd $my_dir
 	cp xschem/xschemrc_PTS06 $HOME/.xschem/xschemrc
 	cp xschem/title_PTS06.sch $HOME/.xschem/title_PTS06.sch
-	cp -aR ./xschem/symbols/ $HOME/.xschem/
-	cp -aR ./xschem/lib/ $HOME/.xschem/
+	cp -aR ./xschem/symbols/* $HOME/.xschem/symbols/
+	cp -aR ./xschem/lib/* $HOME/.xschem/lib/
 fi
 
 # Finished
