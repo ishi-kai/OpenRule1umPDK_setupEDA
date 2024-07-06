@@ -174,7 +174,7 @@ if [ ! -d "$SRC_DIR/xschem-gaw" ]; then
   if [ "$(uname)" == 'Darwin' ]; then
     OS='Mac'
     brew install pkg-config
-     brew install automake
+    brew install automake
     brew install autoconf
     brew install gtk+3
     gettextize -f
@@ -363,7 +363,7 @@ if [ ! -d "$SRC_DIR/ngspice" ]; then
 
   if [ "$(uname)" == 'Darwin' ]; then
     OS='Mac'
-    ./configure --disable-debug --with-readline=no --enable-openmp --with-x CXX="g++$CXX_VERSION" CC="gcc$CC_VERSION" CFLAGS="-m64 -O2 -Wno-error=implicit-function-declaration -Wno-error=implicit-int" LDFLAGS="-m64 -s" CPPFLAGS="-I/opt/homebrew/opt/freetype2/include/freetype2/ -I/opt/homebrew/opt/libomp/include/" LDFLAGS="-L/opt/homebrew/opt/freetype2/lib/ -L/opt/homebrew/opt/fontconfig/lib/ -L/opt/homebrew/opt/libomp/lib/ -L/usr/X11/lib/"
+    ./configure --disable-debug --with-readline=no --enable-openmp --with-x CXX="g++$CXX_VERSION" CC="gcc$CC_VERSION" CFLAGS="-m64 -O2 -Wno-error=implicit-function-declaration -Wno-error=implicit-int" CPPFLAGS="-I/opt/homebrew/opt/freetype2/include/freetype2/ -I/opt/homebrew/opt/libomp/include/" LDFLAGS="-m64 -s -L/opt/homebrew/opt/freetype2/lib/ -L/opt/homebrew/opt/fontconfig/lib/ -L/opt/homebrew/opt/libomp/lib/ -L/usr/X11/lib/"
     sed -i '' 's/TCGETS/TIOCMGET/g' src/frontend/parser/complete.c
     sed -i '' 's/TCSETS/TIOCMSET/g' src/frontend/parser/complete.c
     sed -i '' 's/LEX = :/LEX = lex/g' src/xspice/cmpp/Makefile
