@@ -1,4 +1,4 @@
-v {xschem version=3.4.5 file_version=1.2
+v {xschem version=3.1.0 file_version=1.2
 * Copyright 2023-2024 Mori Mizuki, Noritsuna Imamura(ISHI-KAI)
 * Copyright 2022 Stefan Frederik Schippers
 *
@@ -14,24 +14,29 @@ v {xschem version=3.4.5 file_version=1.2
 * See the License for the specific language governing permissions and
 * limitations under the License.
 }
-G {}
 K {type=primitive
-format="@name @@A @VDD @VSS @@Y buf4"
+format="@name @@CK @@D @@S @VDD @VSS @@Q @@QB sff1_r"
 template="name=x1 VDD=VDD VSS=GND"
 extra="VDD VSS"
-highlight=true
 }
-V {}
-S {}
-E {}
-L 4 -20 -20 -20 20 {}
-L 4 -20 -20 20 0 {}
-L 4 -20 20 20 0 {}
-L 4 20 0 40 0 {}
-L 4 -40 0 -20 0 {}
-B 5 -42.5 -2.5 -37.5 2.5 {name=A dir=in goto=1 propag=1 }
-B 5 37.5 -2.5 42.5 2.5 {name=Y dir=out }
-T {A} -35 -14 0 0 0.2 0.2 {}
-T {Y} 35 -14 0 1 0.2 0.2 {}
-T {@name} 2.5 15 0 0 0.2 0.2 {}
-T {@symname} -7.5 -25 0 0 0.2 0.2 {}
+T {@symname} 0 -6 0 0 0.3 0.3 {hcenter=true}
+T {@name} 75 -42 0 0 0.2 0.2 {}
+L 4 -70 -30 70 -30 {}
+L 4 -70 30 70 30 {}
+L 4 -70 -30 -70 30 {}
+L 4 70 -30 70 30 {}
+B 5 -92.5 -22.5 -87.5 -17.5 {name=CK dir=in }
+L 4 -90 -20 -70 -20 {}
+T {CK} -65 -24 0 0 0.2 0.2 {}
+B 5 -92.5 -2.5 -87.5 2.5 {name=D dir=in }
+L 4 -90 0 -70 0 {}
+T {D} -65 -4 0 0 0.2 0.2 {}
+B 5 -92.5 17.5 -87.5 22.5 {name=S dir=in }
+L 4 -90 20 -70 20 {}
+T {S} -65 16 0 0 0.2 0.2 {}
+B 5 87.5 -22.5 92.5 -17.5 {name=Q dir=out }
+L 4 70 -20 90 -20 {}
+T {Q} 65 -24 0 1 0.2 0.2 {}
+B 5 87.5 -2.5 92.5 2.5 {name=QB dir=out }
+L 4 70 0 90 0 {}
+T {QB} 65 -4 0 1 0.2 0.2 {}
