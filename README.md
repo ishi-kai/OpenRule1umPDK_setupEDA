@@ -1,5 +1,5 @@
 # 何か？
-ISHI会のファニテックシャトル応募用のレイアウトを作るための環境構築用スクリプトです。  
+ISHI会版OpenMPW用のレイアウトを作るための環境構築用スクリプトです。  
 WSL2 (Windows Subsystem for Linux)上のUbuntu22.04とUbuntu22.04とMac Mコアシリーズで動作します。  
 
 # 実行方法
@@ -24,6 +24,12 @@ tcleval(.include "$LIB/stdcells.lib")
 テクノロジーで「OpenRule1umPDK」を選択する。
 
 ![テクノロジーの選択](./images/klayout_tech.png)
+
+### フレーム
+PADのレイアウトとなります。これをベースに設計してください。  
+ピン番号は、左側上が1番で左回りでカウントします。  
+
+[フレーム用のGDSファイル](./GDS/PTS06/top_frame.gds)
 
 
 # ライセンス
