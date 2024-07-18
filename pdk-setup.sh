@@ -64,7 +64,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
   sudo sed -i 's/# deb-src/deb-src/g' /etc/apt/sources.list
   sudo apt -qq update -y
   sudo apt -qq upgrade -y
-elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then                                                                                           
+elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
   OS='Cygwin'
   echo "Your platform ($(uname -a)) is not supported."
   exit 1
@@ -95,7 +95,7 @@ if [ "$(uname)" == 'Darwin' ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
   OS='Linux'
   sudo apt -qq install -y build-essential python3-pip
-elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then                                                                                           
+elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
   OS='Cygwin'
   echo "Your platform ($(uname -a)) is not supported."
   exit 1
@@ -146,7 +146,7 @@ if [ ! -d "$SRC_DIR/xschem" ]; then
     libxcb1 libx11-xcb-dev libcairo2 libcairo2-dev  \
     tcl8.6 tcl8.6-dev tk8.6 tk8.6-dev \
     flex bison libxpm4 libxpm-dev gawk tcl-tclreadline
-  elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then                                                                                           
+  elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
     OS='Cygwin'
     echo "Your platform ($(uname -a)) is not supported."
     exit 1
@@ -194,7 +194,7 @@ if [ ! -d "$SRC_DIR/xschem-gaw" ]; then
   elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     OS='Linux'
     sudo apt -qq install -y libgtk-3-dev alsa libasound2-dev gettext libtool
-  elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then                                                                                           
+  elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
     OS='Cygwin'
     echo "Your platform ($(uname -a)) is not supported."
     exit 1
@@ -259,7 +259,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
   sudo apt -qq install -y ./klayout_$KLAYOUT_VERSION-1_amd64.deb
   rm klayout_$KLAYOUT_VERSION-1_amd64.deb
   pip install docopt pandas pip-autoremove
-elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then                                                                                           
+elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
   OS='Cygwin'
   echo "Your platform ($(uname -a)) is not supported."
   exit 1
@@ -439,6 +439,25 @@ else
   cd $my_dir
   cp -aR ./klayout/macros/* $HOME/.klayout/macros/
 fi
+
+
+# Install GDSfactory
+# -----------------------------------
+if [ "$(uname)" == 'Darwin' ]; then
+  OS='Mac'
+  python3 -m pip install gdsfactory pip-autoremove --break-system-packages
+elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+  OS='Linux'
+  pip install gdsfactory
+elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
+  OS='Cygwin'
+  echo "Your platform ($(uname -a)) is not supported."
+  exit 1
+else
+  echo "Your platform ($(uname -a)) is not supported."
+  exit 1
+fi
+
 
 # Finished
 # --------
