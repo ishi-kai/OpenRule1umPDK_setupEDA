@@ -413,7 +413,7 @@ else
   cp -aR ./* $HOME/.klayout/salt/OpenRule1um/
 fi
 if [ ! -d "$SRC_DIR/AnagixLoader" ]; then
-        cd $SRC_DIR
+  cd $SRC_DIR
   git clone  https://github.com/mineda-support/AnagixLoader.git
   cp -aR AnagixLoader $HOME/.klayout/salt/
 else
@@ -425,11 +425,19 @@ fi
 
 if [ ! -d "$HOME/.xschem/symbols" ]; then
   mkdir -p $HOME/.xschem/symbols
+else
   cd $my_dir
   cp xschem/xschemrc_PTS06 $HOME/.xschem/xschemrc
   cp xschem/title_PTS06.sch $HOME/.xschem/title_PTS06.sch
   cp -aR ./xschem/symbols/* $HOME/.xschem/symbols/
   cp -aR ./xschem/lib/* $HOME/.xschem/lib/
+fi
+
+if [ ! -d "$HOME/.klayout/macros" ]; then
+  mkdir -p $HOME/.klayout/macros
+else
+  cd $my_dir
+  cp -aR ./klayout/macros/* $HOME/.klayout/macros/
 fi
 
 # Finished

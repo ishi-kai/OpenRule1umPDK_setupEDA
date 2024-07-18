@@ -1,4 +1,4 @@
-v {xschem version=3.1.0 file_version=1.2
+v {xschem version=3.4.5 file_version=1.2
 * Copyright 2023-2024 Mori Mizuki, Noritsuna Imamura(ISHI-KAI)
 * Copyright 2022 Stefan Frederik Schippers
 *
@@ -18,7 +18,7 @@ G {}
 K {type=primitive
 function3="1 0 2 & & 0 ~ 2 3 & & |"
 function4="3 ~"
-format="@name @@CK @@D @@R @VDD @VSS @@Q @@QB rff1"
+format="@name @@CK @@D @@Q @@QB @@R @VDD @VSS rff1"
 template="name=x1 VDD=VDD VSS=GND"
 extra="VDD VSS"
 }
@@ -38,7 +38,7 @@ B 5 -92.5 -22.5 -87.5 -17.5 {name=CK dir=in goto=3 clock=1}
 B 5 -92.5 -2.5 -87.5 2.5 {name=D dir=in }
 B 5 -92.5 17.5 -87.5 22.5 {name=R dir=in goto=3 clock=2}
 B 5 87.5 -22.5 92.5 -17.5 {name=Q dir=out goto=4}
-B 5 87.5 -2.5 92.5 2.5 {name=QB dir=out }
+B 5 87.5 -2.5 92.5 2.5 {name=QB dir=out goto=4}
 T {@symname} 0 -6 0 0 0.3 0.3 {hcenter=true}
 T {@name} 75 -42 0 0 0.2 0.2 {}
 T {CK} -65 -24 0 0 0.2 0.2 {}
