@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <klayout-macro>
- <description>Get reference from Xschem LVS netlist (ISHI-kai/OR1)</description>
+ <description>Get reference from Xschem LVS netlist (OR1 stdcells)</description>
  <version/>
  <category/>
  <prolog/>
@@ -20,10 +20,10 @@
   include RBA
 
   # Options
-  workdir = "~/.klayout"
   simpath = "~/.xschem/simulations"
-  pmos = "pchOR1ex"
-  nmos = "nchOR1ex"
+  pmos = "pchor1ex"
+  nmos = "nchor1ex"
+
   # End Options
 
   gds_base = File.basename(RBA::Application.instance.main_window.current_view.active_cellview.filename, ".*")
@@ -35,9 +35,10 @@
   system( "sed -i -e 's/.subckt #{gds_base}/.subckt #{cell_name}/g' #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp" )
   system( "sed -i -e 's/#{pmos}/PMOS/g' #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp" )
   system( "sed -i -e 's/#{nmos}/NMOS/g' #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp" )
-  system( "gnome-terminal --title=Netlist --working-directory=#{gds_dir} -- sh -c 'cat #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp; read line'" )
-  system( "cat #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp #{workdir}/macros/or1_stdcells.cdl > #{gds_dir}/lvs_work/#{gds_base}_reference.cir.txt" )
+  system( "sed -i -e 's/stdcells_sim/stdcells_lvs/g' #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp" )
+  system( "cat #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp | awk '!a[$0]++{print}' &gt; #{gds_dir}/lvs_work/#{gds_base}_reference.cir.txt" )
   system( "rm -rf #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp" )
+  system( "gnome-terminal --title=Netlist --working-directory=#{gds_dir} -- sh -c 'cat #{gds_dir}/lvs_work/#{gds_base}_reference.cir.txt; read line'" )
 end
 </text>
 </klayout-macro>

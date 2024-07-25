@@ -403,13 +403,13 @@ fi
 # setup OpenRule1umPDK
 # ----------------------------------
 if [ ! -d "$SRC_DIR/OpenRule1um" ]; then
-        cd $SRC_DIR
+  cd $SRC_DIR
   git clone  https://github.com/mineda-support/OpenRule1um.git
   cp -aR OpenRule1um $HOME/.klayout/salt/
 else
   echo ">>>> Updating OpenRule1um"
   cd $SRC_DIR/OpenRule1um || exit
-        git pull
+  git pull
   cp -aR ./* $HOME/.klayout/salt/OpenRule1um/
 fi
 if [ ! -d "$SRC_DIR/AnagixLoader" ]; then
@@ -419,7 +419,7 @@ if [ ! -d "$SRC_DIR/AnagixLoader" ]; then
 else
   echo ">>>> Updating AnagixLoader"
   cd $SRC_DIR/AnagixLoader || exit
-        git pull
+  git pull
   cp -aR ./* $HOME/.klayout/salt/AnagixLoader/
 fi
 
@@ -439,6 +439,8 @@ else
   cd $my_dir
   cp -aR ./klayout/macros/* $HOME/.klayout/macros/
 fi
+cd $my_dir
+cp -f ./klayout/klayoutrc $HOME/.klayout/klayoutrc
 
 
 # Install GDSfactory
