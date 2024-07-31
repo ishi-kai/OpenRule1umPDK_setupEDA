@@ -16,15 +16,14 @@ v {xschem version=3.4.5 file_version=1.2
 }
 G {}
 K {type=nmos
-format="@spiceprefix@name @pinlist @model L=@L W=@W m=@m @extra"
-lvs_format="@spiceprefix@name @pinlist @model L=@L W=@W m=@m"
+format="@name @pinlist @model L=@L W=@W m=@m @extra"
+lvs_format="@name @pinlist @model L=@L W=@W m=@m"
 template="name=M1 
 model=nchor1ex
 W=1u
-L=0.6u
+L=1u
 m=1
-"
-}
+"}
 V {}
 S {}
 E {}
