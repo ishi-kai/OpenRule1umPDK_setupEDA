@@ -1,12 +1,12 @@
 .subckt exnr A B VDD VSS X
-M9 net18 A VSS VSS nchorex1 w=2u l=1u
-M8 net18 B VSS VSS nchorex1 w=2u l=1u
-M7 X net42 net18 VSS nchorex1 w=2u l=1u
-M6 N002 A VSS VSS nchorex1 w=2u l=1u
-M5 net42 B N002 VSS nchorex1 w=2u l=1u
-M4 X net42 VDD VDD pchorex1 w=6u l=1u
-M3 X A N001 VDD pchorex1 w=6u l=1u
-M2 N001 B VDD VDD pchorex1 w=6u l=1u
-M1 net42 A VDD VDD pchorex1 w=6u l=1u
-M0 net42 B VDD VDD pchorex1 w=6u l=1u
+M9 net18 A VSS VSS nchor1ex w=2u l=1u
+M8 net18 B VSS VSS nchor1ex w=2u l=1u
+M7 X net42 net18 VSS nchor1ex w=2u l=1u
+M6 N002 A VSS VSS nchor1ex w=2u l=1u
+M5 net42 B N002 VSS nchor1ex w=2u l=1u
+M4 X net42 VDD VDD pchor1ex w=6u l=1u
+M3 X A N001 VDD pchor1ex w=6u l=1u
+M2 N001 B VDD VDD pchor1ex w=6u l=1u
+M1 net42 A VDD VDD pchor1ex w=6u l=1u
+M0 net42 B VDD VDD pchor1ex w=6u l=1u
 .ends exnr

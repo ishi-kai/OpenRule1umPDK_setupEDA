@@ -1,6 +1,6 @@
 .subckt nr21 A B VDD VSS X
-M3 N001 A VDD VDD pchorex1 w=6u l=1u
-M2 X B N001 VDD pchorex1 w=6u l=1u
-M1 X B VSS VSS nchorex1 w=2u l=1u
-M0 X A VSS VSS nchorex1 w=2u l=1u
+M3 N001 A VDD VDD pchor1ex w=6u l=1u
+M2 X B N001 VDD pchor1ex w=6u l=1u
+M1 X B VSS VSS nchor1ex w=2u l=1u
+M0 X A VSS VSS nchor1ex w=2u l=1u
 .ends nr21

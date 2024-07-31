@@ -1,10 +1,10 @@
 .subckt inv4 A VDD VSS X
-M8 X A VDD VDD pchorex1 w=6u l=1u
-M6 X A VDD VDD pchorex1 w=6u l=1u
-M4 X A VDD VDD pchorex1 w=6u l=1u
-M3 X A VDD VDD pchorex1 w=6u l=1u
-M9 X A VSS VSS nchorex1 w=2u l=1u
-M7 X A VSS VSS nchorex1 w=2u l=1u
-M5 X A VSS VSS nchorex1 w=2u l=1u
-M0 X A VSS VSS nchorex1 w=2u l=1u
+M8 X A VDD VDD pchor1ex w=6u l=1u
+M6 X A VDD VDD pchor1ex w=6u l=1u
+M4 X A VDD VDD pchor1ex w=6u l=1u
+M3 X A VDD VDD pchor1ex w=6u l=1u
+M9 X A VSS VSS nchor1ex w=2u l=1u
+M7 X A VSS VSS nchor1ex w=2u l=1u
+M5 X A VSS VSS nchor1ex w=2u l=1u
+M0 X A VSS VSS nchor1ex w=2u l=1u
 .ends inv4

@@ -1,8 +1,8 @@
 .subckt cinv A OE VDD VSS X
-M5 net6 OE VSS VSS nchorex1 w=2u l=1u
-M4 N002 OE VSS VSS nchorex1 w=2u l=1u
-M3 X A N002 VSS nchorex1 w=2u l=1u
-M2 net6 OE VDD VDD pchorex1 w=6u l=1u
-M1 X A N001 VDD pchorex1 w=6u l=1u
-M0 N001 net6 VDD VDD pchorex1 w=6u l=1u
+M5 net6 OE VSS VSS nchor1ex w=2u l=1u
+M4 N002 OE VSS VSS nchor1ex w=2u l=1u
+M3 X A N002 VSS nchor1ex w=2u l=1u
+M2 net6 OE VDD VDD pchor1ex w=6u l=1u
+M1 X A N001 VDD pchor1ex w=6u l=1u
+M0 N001 net6 VDD VDD pchor1ex w=6u l=1u
 .ends cinv

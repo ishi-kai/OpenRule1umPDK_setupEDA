@@ -1,8 +1,8 @@
 .subckt nr31 A B C VDD VSS X
-M5 X C VSS VSS nchorex1 w=2u l=1u
-M4 X B VSS VSS nchorex1 w=2u l=1u
-M3 X A VSS VSS nchorex1 w=2u l=1u
-M2 X C N002 VDD pchorex1 w=6u l=1u
-M1 N002 B N001 VDD pchorex1 w=6u l=1u
-M0 N001 A VDD VDD pchorex1 w=6u l=1u
+M5 X C VSS VSS nchor1ex w=2u l=1u
+M4 X B VSS VSS nchor1ex w=2u l=1u
+M3 X A VSS VSS nchor1ex w=2u l=1u
+M2 X C N002 VDD pchor1ex w=6u l=1u
+M1 N002 B N001 VDD pchor1ex w=6u l=1u
+M0 N001 A VDD VDD pchor1ex w=6u l=1u
 .ends nr31
