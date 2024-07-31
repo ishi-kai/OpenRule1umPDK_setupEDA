@@ -6,21 +6,21 @@ V {}
 S {}
 E {}
 N 190 -220 230 -220 {
-lab=out}
+lab=Q}
 N 230 -220 230 -120 {
-lab=out}
+lab=Q}
 N 190 -120 230 -120 {
-lab=out}
+lab=Q}
 N 120 -90 150 -90 {
-lab=in}
+lab=A}
 N 120 -250 120 -90 {
-lab=in}
+lab=A}
 N 120 -250 150 -250 {
-lab=in}
+lab=A}
 N 50 -170 120 -170 {
-lab=in}
+lab=A}
 N 230 -170 300 -170 {
-lab=out}
+lab=Q}
 N 190 -340 190 -280 {
 lab=VDD}
 N 190 -60 190 -10 {
@@ -37,9 +37,19 @@ N 200 -290 200 -250 {
 lab=VDD}
 N 190 -250 200 -250 {
 lab=VDD}
-C {primitives/nfet.sym} 170 -90 0 0 {name=M2 model=NMOS W=2.0u L=1.0u m=1}
-C {primitives/pfet.sym} 170 -250 0 0 {name=M1 model=PMOS W=3.3u L=1.0u m=1}
-C {devices/ipin.sym} 50 -170 0 0 {name=p1 lab=in}
-C {devices/opin.sym} 300 -170 0 0 {name=p2 lab=out}
+C {devices/ipin.sym} 50 -170 0 0 {name=p1 lab=A}
+C {devices/opin.sym} 300 -170 0 0 {name=p2 lab=Q}
 C {devices/iopin.sym} 190 -340 0 1 {name=p3 lab=VDD}
 C {devices/iopin.sym} 190 -10 0 0 {name=p4 lab=VSS}
+C {primitives/pfet.sym} 170 -250 0 0 {name=M1 
+model=pchor1ex
+W=3.3u
+L=1.0u
+m=1
+}
+C {primitives/nfet.sym} 170 -90 0 0 {name=M2 
+model=nchor1ex
+W=2.0u
+L=1.0u
+m=1
+}

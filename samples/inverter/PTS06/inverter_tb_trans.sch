@@ -53,8 +53,6 @@ N 300 -170 300 -100 {
 lab=vout}
 N 300 -40 300 -10 {
 lab=GND}
-C {primitives/nfet.sym} 170 -90 0 0 {name=M2 model=nchOR1ex W=2.0u L=1.0u m=1}
-C {primitives/pfet.sym} 170 -250 0 0 {name=M1 model=pchOR1ex W=3.3u L=1.0u m=1}
 C {devices/code.sym} -250 -350 0 0 {name=PTS06_MODELS
 only_toplevel=true
 format="tcleval( @value )"
@@ -71,7 +69,7 @@ C {devices/lab_pin.sym} 50 -170 0 0 {name=p1 sig_type=std_logic lab=vin}
 C {devices/lab_pin.sym} 300 -170 0 1 {name=p2 sig_type=std_logic lab=vout}
 C {devices/lab_pin.sym} -130 -150 1 0 {name=p3 sig_type=std_logic lab=vin}
 C {devices/gnd.sym} -130 -20 0 0 {name=l5}
-C {devices/code_shown.sym} 50 70 0 0 {name=spice only_toplevel=false value=".option savecurrent
+C {devices/code_shown.sym} 380 -360 0 0 {name=spice only_toplevel=false value=".option savecurrent
 .control
 save all
 
@@ -79,8 +77,10 @@ save all
 tran 0.1n 100n
 plot vout vin
 plot i(vd)
+wrdata ~/inverter_tb_tran.txt v(vout)
+write inverter_tb_trans.raw
 .endc"}
-C {devices/code_shown.sym} 50 270 0 0 {name=measure only_toplevel=false value="
+C {devices/code_shown.sym} 380 -110 0 0 {name=measure only_toplevel=false value="
 .measure tran td_r trig v(vin) val=2.5 fall=1 targ v(vout) val=2.5 rise=1
 .measure tran td_f trig v(vin) val=2.5 rise=1 targ v(vout) val=2.5 fall=1
 .measure tran trise trig v(vout) val=0.83 rise=1 targ v(vout) val=4.17 rise=1
@@ -93,3 +93,15 @@ m=1
 value=10f
 footprint=1206
 device="ceramic capacitor"}
+C {primitives/pfet.sym} 170 -250 0 0 {name=M1 
+model=pchor1ex
+W=3.3u
+L=1.0u
+m=1
+}
+C {primitives/nfet.sym} 170 -90 0 0 {name=M2 
+model=nchor1ex
+W=2.0u
+L=1.0u
+m=1
+}

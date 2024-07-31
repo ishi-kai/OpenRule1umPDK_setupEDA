@@ -208,6 +208,7 @@ if [ ! -d "$SRC_DIR/xschem-gaw" ]; then
   if [ "$(uname)" == 'Darwin' ]; then
     OS='Mac'
 #    export LDFLAGS="-L/usr/X11/lib $LDFLAGS"
+    sed -i '' 's/GETTEXT_MACRO_VERSION = 0.18/GETTEXT_MACRO_VERSION = 0.20/g' po/Makefile.in.in
     ./configure --enable-gawsound=no LDFLAGS="-L/usr/X11/lib"
   elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     OS='Linux'

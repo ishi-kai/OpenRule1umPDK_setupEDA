@@ -53,8 +53,6 @@ N 300 -170 300 -100 {
 lab=vout}
 N 300 -40 300 -10 {
 lab=GND}
-C {primitives/nfet.sym} 170 -90 0 0 {name=M2 model=nchOR1ex W=2.0u L=1.0u m=1}
-C {primitives/pfet.sym} 170 -250 0 0 {name=M1 model=pchOR1ex W=3.3u L=1.0u m=1}
 C {devices/code.sym} -250 -350 0 0 {name=PTS06_MODELS
 only_toplevel=true
 format="tcleval( @value )"
@@ -66,12 +64,12 @@ C {devices/gnd.sym} 190 -10 0 0 {name=l2}
 C {devices/vsource.sym} -210 -90 0 0 {name=Vdd value=5.0 savecurrent=false}
 C {devices/vdd.sym} -210 -150 0 0 {name=l3}
 C {devices/gnd.sym} -210 -20 0 0 {name=l4}
-C {devices/vsource.sym} -130 -90 0 0 {name=vin value=2.5 savecurrent=false}
+C {devices/vsource.sym} -130 -90 0 0 {name=vin value=5.0 savecurrent=false}
 C {devices/lab_pin.sym} 50 -170 0 0 {name=p1 sig_type=std_logic lab=vin}
 C {devices/lab_pin.sym} 300 -170 0 1 {name=p2 sig_type=std_logic lab=vout}
 C {devices/lab_pin.sym} -130 -150 1 0 {name=p3 sig_type=std_logic lab=vin}
 C {devices/gnd.sym} -130 -20 0 0 {name=l5}
-C {devices/code_shown.sym} 50 70 0 0 {name=spice only_toplevel=false value=".option savecurrent
+C {devices/code_shown.sym} 390 -320 0 0 {name=spice only_toplevel=false value=".option savecurrent
 .control
 save all
 
@@ -79,8 +77,10 @@ save all
 dc vin 0 5.0 0.01
 plot vout vin
 plot i(vd)
+wrdata ~/inverter_tb.txt v(vout)
+write inverter_tb.raw
 .endc"}
-C {devices/code_shown.sym} 40 270 0 0 {name=measure only_toplevel=false value=".measure dc Vinv when v(vout)=2.5"}
+C {devices/code_shown.sym} 390 -40 0 0 {name=measure only_toplevel=false value=".measure dc Vinv when v(vout)=2.5"}
 C {devices/ammeter.sym} 190 -350 0 0 {name=Vd savecurrent=true spice_ignore=0}
 C {devices/gnd.sym} 300 -10 0 0 {name=l6}
 C {devices/capa.sym} 300 -70 0 0 {name=Cload
@@ -88,3 +88,15 @@ m=1
 value=10f
 footprint=1206
 device="ceramic capacitor"}
+C {primitives/pfet.sym} 170 -250 0 0 {name=M1 
+model=pchor1ex
+W=3.3u
+L=1.0u
+m=1
+}
+C {primitives/nfet.sym} 170 -90 0 0 {name=M2 
+model=nchor1ex
+W=2.0u
+L=1.0u
+m=1
+}
