@@ -51,10 +51,19 @@
 *+ temp = 25.0
 *
 * Pact 42ohm/sq
-.MODEL r_nwell R
+.MODEL r_pdiff R
 + tc1 = 0
 + tc2 = 0
 + rsh = 41.7
++ w = 0
++ l = 0
+*+ temp = 25.0
+*
+* HPoly 7000ohm/sq?
+.MODEL hr_poly R
++ tc1 = 0
++ tc2 = 0
++ rsh = 7000
 + w = 0
 + l = 0
 *+ temp = 25.0
