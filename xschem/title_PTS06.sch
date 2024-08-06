@@ -26,21 +26,22 @@ T {Resistor} 480 -720 0 0 0.5 0.5 {}
 T {R_poly.sym} 500 -680 0 0 0.4 0.4 {}
 T {R_pdiff.sym} 500 -520 0 0 0.4 0.4 {}
 T {*R_ndiff.sym} 500 -360 0 0 0.4 0.4 {}
-T {**R_nwell.sym} 500 -200 0 0 0.4 0.4 {}
-T {Diode} 700 -720 0 0 0.5 0.5 {}
+T {*HR_poly.sym} 500 -200 0 0 0.4 0.4 {}
+T {Misc} 700 -720 0 0 0.5 0.5 {}
 T {ISHI-kai} 1140 -720 0 0 0.5 0.5 {}
 T {*) Sim model unavailable} 1200 -80 0 0 0.5 0.5 {}
 T {**) No Pcells in klayout} 1200 -40 0 0 0.5 0.5 {}
 T {**pts_np.sym} 720 -680 0 0 0.4 0.4 {}
+T {**R_nwell.sym} 720 -520 0 0 0.4 0.4 {}
 C {devices/title.sym} 160 -30 0 0 {name=l1 author="MakeLSI & ISHI-kai"}
 C {primitives/nfet.sym} 100 -430 0 0 {name=M2
-model=nchor1ex
+model=nchorex1
 W=1u
 L=1u
 m=1
 }
 C {primitives/pfet.sym} 100 -590 0 0 {name=M1 
-model=pchor1ex
+model=pchorex1
 W=2u
 L=1u
 m=1
@@ -66,7 +67,6 @@ C {primitives/Pdiff_cap.sym} 360 -430 0 0 {name=C3 model=Pdiff_cap W=1 L=1 spice
 C {primitives/Poly_cap.sym} 360 -590 0 0 {name=C1 model=Poly_cap W=1 L=1}
 C {primitives/R_poly.sym} 580 -590 0 0 {name=R1 model=R_Poly W=1 L=1}
 C {primitives/R_pdiff.sym} 580 -430 0 0 {name=R2 model=R_pdiff W=1 L=1}
-C {primitives/R_nwell.sym} 580 -110 0 0 {name=R4 model=R_nwell W=1 L=1}
 C {primitives/R_ndiff.sym} 580 -270 0 0 {name=R3 model=R_ndiff W=1 L=1}
 C {stdcells/dff1.sym} 1030 -180 0 0 {name=x6 VDD=VDD VSS=GND
 models=".include $::LIB/stdcells_sim/dff1.lib"}
@@ -74,3 +74,5 @@ C {primitives/pts_np.sym} 800 -590 0 0 {name=D1
 model=pts_np_b
 area=1e12
 }
+C {primitives/HR_poly.sym} 580 -110 0 0 {name=R4 model=HR_Poly W=1 L=1}
+C {primitives/R_nwell.sym} 800 -430 0 0 {name=R5 model=R_nwell W=1 L=1}
