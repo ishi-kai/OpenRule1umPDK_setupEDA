@@ -9,7 +9,7 @@ WSL2 (Windows Subsystem for Linux)上のUbuntu22.04とUbuntu22.04とMac Mコア�
 
 ## xschemの追加設定
 ### シミュレーション用ファイルをインクルードする
-回路のコマンドに「.include "$LIB/mos.lib"」や「.include "$LIB/stdcells.lib"」を追加する。  
+回路のコマンドに「.include $::LIB/mos.lib」や「.include $::LIB/passive.lib」や「.include $::LIB/diode.lib」を追加する。  
 
 ## TEGから求めた抵抗・容量の値(2017/9/23:akita11)
 
