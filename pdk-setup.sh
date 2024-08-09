@@ -432,7 +432,7 @@ cd $my_dir
 cp xschem/xschemrc_PTC06 $HOME/.xschem/xschemrc
 cp xschem/title_PTC06.sch $HOME/.xschem/title_PTC06.sch
 cp -aR ./xschem/symbols/* $HOME/.xschem/symbols/
-cp -aR ./xschem/lib/* $HOME/.xschem/lib/
+cp -aR ./xschem/lib/PTC06/* $HOME/.xschem/lib/
 
 if [ ! -d "$HOME/.klayout/macros" ]; then
   mkdir -p $HOME/.klayout/macros
