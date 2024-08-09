@@ -46,7 +46,7 @@ W=2u
 L=1u
 m=1
 }
-C {devices/code.sym} 70 -300 0 0 {name=PTS06_MODELS
+C {devices/code.sym} 70 -300 0 0 {name=PTC06_MODELS
 only_toplevel=true
 format="tcleval( @value )"
 value=".include $::LIB/mos.lib

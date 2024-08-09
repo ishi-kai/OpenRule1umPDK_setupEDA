@@ -53,11 +53,12 @@ N 300 -170 300 -100 {
 lab=vout}
 N 300 -40 300 -10 {
 lab=GND}
-C {devices/code.sym} -250 -350 0 0 {name=PTS06_MODELS
+C {devices/code.sym} -250 -350 0 0 {name=PTC06_MODELS
 only_toplevel=true
 format="tcleval( @value )"
-value=".include /Users/[user]/.xschem/lib/PTS06/mos.lib
-.include /Users/[user]/.xschem/lib/PTS06/stdcells.lib"
+value=".include $::LIB/mos.lib
+.include $::LIB/passive.lib
+.include $::LIB/diode.lib"
 spice_ignore=false}
 C {devices/vdd.sym} 190 -400 0 0 {name=l1}
 C {devices/gnd.sym} 190 -10 0 0 {name=l2}
@@ -69,7 +70,7 @@ C {devices/lab_pin.sym} 50 -170 0 0 {name=p1 sig_type=std_logic lab=vin}
 C {devices/lab_pin.sym} 300 -170 0 1 {name=p2 sig_type=std_logic lab=vout}
 C {devices/lab_pin.sym} -130 -150 1 0 {name=p3 sig_type=std_logic lab=vin}
 C {devices/gnd.sym} -130 -20 0 0 {name=l5}
-C {devices/code_shown.sym} 390 -330 0 0 {name=spice only_toplevel=false value=".option savecurrent
+C {devices/code_shown.sym} 390 -320 0 0 {name=spice only_toplevel=false value=".option savecurrent
 .control
 save all
 
@@ -77,8 +78,8 @@ save all
 dc vin 0 5.0 0.01
 plot vout vin
 plot i(vd)
-wrdata ~/inverter_tb_mac.txt v(vout)
-write inverter_tb_mac.raw
+wrdata ~/inverter_tb.txt v(vout)
+write inverter_tb.raw
 .endc"}
 C {devices/code_shown.sym} 390 -40 0 0 {name=measure only_toplevel=false value=".measure dc Vinv when v(vout)=2.5"}
 C {devices/ammeter.sym} 190 -350 0 0 {name=Vd savecurrent=true spice_ignore=0}

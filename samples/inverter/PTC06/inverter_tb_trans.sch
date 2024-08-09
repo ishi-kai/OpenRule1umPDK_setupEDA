@@ -53,11 +53,12 @@ N 300 -170 300 -100 {
 lab=vout}
 N 300 -40 300 -10 {
 lab=GND}
-C {devices/code.sym} -250 -350 0 0 {name=PTS06_MODELS
+C {devices/code.sym} -250 -350 0 0 {name=PTC06_MODELS
 only_toplevel=true
 format="tcleval( @value )"
-value=".include /Users/noritsuna/.xschem/lib/PTS06/mos.lib
-.include /Users/noritsuna/.xschem/lib/PTS06/stdcells.lib"
+value=".include $::LIB/mos.lib
+.include $::LIB/passive.lib
+.include $::LIB/diode.lib"
 spice_ignore=false}
 C {devices/vdd.sym} 190 -400 0 0 {name=l1}
 C {devices/gnd.sym} 190 -10 0 0 {name=l2}
@@ -69,7 +70,7 @@ C {devices/lab_pin.sym} 50 -170 0 0 {name=p1 sig_type=std_logic lab=vin}
 C {devices/lab_pin.sym} 300 -170 0 1 {name=p2 sig_type=std_logic lab=vout}
 C {devices/lab_pin.sym} -130 -150 1 0 {name=p3 sig_type=std_logic lab=vin}
 C {devices/gnd.sym} -130 -20 0 0 {name=l5}
-C {devices/code_shown.sym} 390 -380 0 0 {name=spice only_toplevel=false value=".option savecurrent
+C {devices/code_shown.sym} 380 -360 0 0 {name=spice only_toplevel=false value=".option savecurrent
 .control
 save all
 
@@ -77,10 +78,10 @@ save all
 tran 0.1n 100n
 plot vout vin
 plot i(vd)
-wrdata ~/inverter_tb_trans_mac.txt v(vout)
-write inverter_tb_trans_mac.raw
+wrdata ~/inverter_tb_tran.txt v(vout)
+write inverter_tb_trans.raw
 .endc"}
-C {devices/code_shown.sym} 390 -130 0 0 {name=measure only_toplevel=false value="
+C {devices/code_shown.sym} 380 -110 0 0 {name=measure only_toplevel=false value="
 .measure tran td_r trig v(vin) val=2.5 fall=1 targ v(vout) val=2.5 rise=1
 .measure tran td_f trig v(vin) val=2.5 rise=1 targ v(vout) val=2.5 fall=1
 .measure tran trise trig v(vout) val=0.83 rise=1 targ v(vout) val=4.17 rise=1

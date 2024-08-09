@@ -53,34 +53,40 @@ N 300 -170 300 -100 {
 lab=vout}
 N 300 -40 300 -10 {
 lab=GND}
-C {devices/code.sym} -250 -350 0 0 {name=PTS06_MODELS
+C {devices/code.sym} -250 -350 0 0 {name=PTC06_MODELS
 only_toplevel=true
 format="tcleval( @value )"
-value=".include /home/[user]/.xschem/lib/PTS06/mos.lib
-.include /home/[user]/.xschem/lib/PTS06/stdcells.lib"
+value=".include $::LIB/mos.lib
+.include $::LIB/passive.lib
+.include $::LIB/diode.lib"
 spice_ignore=false}
 C {devices/vdd.sym} 190 -400 0 0 {name=l1}
 C {devices/gnd.sym} 190 -10 0 0 {name=l2}
 C {devices/vsource.sym} -210 -90 0 0 {name=Vdd value=5.0 savecurrent=false}
 C {devices/vdd.sym} -210 -150 0 0 {name=l3}
 C {devices/gnd.sym} -210 -20 0 0 {name=l4}
-C {devices/vsource.sym} -130 -90 0 0 {name=vin value=5.0 savecurrent=false}
+C {devices/vsource.sym} -130 -90 0 0 {name=vin value="pwl 0 0 10n 0 20n 5.0 60n 5.0 70n 0" savecurrent=false}
 C {devices/lab_pin.sym} 50 -170 0 0 {name=p1 sig_type=std_logic lab=vin}
 C {devices/lab_pin.sym} 300 -170 0 1 {name=p2 sig_type=std_logic lab=vout}
 C {devices/lab_pin.sym} -130 -150 1 0 {name=p3 sig_type=std_logic lab=vin}
 C {devices/gnd.sym} -130 -20 0 0 {name=l5}
-C {devices/code_shown.sym} 390 -320 0 0 {name=spice only_toplevel=false value=".option savecurrent
+C {devices/code_shown.sym} 390 -380 0 0 {name=spice only_toplevel=false value=".option savecurrent
 .control
 save all
 
-* DC analysis (I/O curve)
-dc vin 0 5.0 0.01
+* Tran analysis
+tran 0.1n 100n
 plot vout vin
 plot i(vd)
-wrdata ~/inverter_tb.txt v(vout)
-write inverter_tb.raw
+wrdata ~/inverter_tb_trans_mac.txt v(vout)
+write inverter_tb_trans_mac.raw
 .endc"}
-C {devices/code_shown.sym} 390 -40 0 0 {name=measure only_toplevel=false value=".measure dc Vinv when v(vout)=2.5"}
+C {devices/code_shown.sym} 390 -130 0 0 {name=measure only_toplevel=false value="
+.measure tran td_r trig v(vin) val=2.5 fall=1 targ v(vout) val=2.5 rise=1
+.measure tran td_f trig v(vin) val=2.5 rise=1 targ v(vout) val=2.5 fall=1
+.measure tran trise trig v(vout) val=0.83 rise=1 targ v(vout) val=4.17 rise=1
+.measure tran tfall trig v(vout) val=4.17 fall=1 targ v(vout) val=0.83 fall=1
+"}
 C {devices/ammeter.sym} 190 -350 0 0 {name=Vd savecurrent=true spice_ignore=0}
 C {devices/gnd.sym} 300 -10 0 0 {name=l6}
 C {devices/capa.sym} 300 -70 0 0 {name=Cload

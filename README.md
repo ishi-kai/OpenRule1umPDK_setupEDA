@@ -9,14 +9,7 @@ WSL2 (Windows Subsystem for Linux)上のUbuntu22.04とUbuntu22.04とMac Mコア�
 
 ## xschemの追加設定
 ### シミュレーション用ファイルをインクルードする
-xschemを`Tools → Execute TCL command`で下記のコマンドを実行する。  
-
-```
-tcleval(.include "$LIB/mos.lib")
-tcleval(.include "$LIB/stdcells.lib")
-```
-
-「.include "$LIB/mos.lib"」や「.include "$LIB/stdcells.lib"」を回路のコマンドに書いてもOKです。  
+回路のコマンドに「.include "$LIB/mos.lib"」や「.include "$LIB/stdcells.lib"」を追加する。  
 
 ## TEGから求めた抵抗・容量の値(2017/9/23:akita11)
 
@@ -42,7 +35,7 @@ tcleval(.include "$LIB/stdcells.lib")
 パッドのレイアウトとなります。これをベースに設計してください。  
 ピン番号は、下面左端（南面西端）が1番で左回りでカウントします。  
 
-[フレーム用のGDSファイル](./GDS/PTS06/top_frame.gds)
+[フレーム用のGDSファイル](./GDS/PTC06/top_frame.gds)
 ![フレーム用のGDSファイル](./images/pad_frame.png)
 
 ### パッド

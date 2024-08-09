@@ -428,8 +428,8 @@ if [ ! -d "$HOME/.xschem/symbols" ]; then
   mkdir -p $HOME/.xschem/symbols
 else
   cd $my_dir
-  cp xschem/xschemrc_PTS06 $HOME/.xschem/xschemrc
-  cp xschem/title_PTS06.sch $HOME/.xschem/title_PTS06.sch
+  cp xschem/xschemrc_PTC06 $HOME/.xschem/xschemrc
+  cp xschem/title_PTC06.sch $HOME/.xschem/title_PTC06.sch
   cp -aR ./xschem/symbols/* $HOME/.xschem/symbols/
   cp -aR ./xschem/lib/* $HOME/.xschem/lib/
 fi
