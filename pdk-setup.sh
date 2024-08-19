@@ -249,7 +249,7 @@ if [ "$(uname)" == 'Darwin' ]; then
   fi
   python3 build4mac.py -r HB33 -p HBAuto -q Qt5Brew -m ‘—jobs=8’ -n -u
   mkdir -p $HOME/bin/klayout.app
-  cp -aR   cd $SRC_DIR/klayout/qt5Brew.bin.macos-Sonoma-release-Rhb33Phbauto/* $HOME/bin/klayout.app/
+  cp -aR $SRC_DIR/klayout/qt5Brew.bin.macos-$MAC_OS_NAME-release-Rhb33Phbauto/* $HOME/bin/klayout.app/
   echo 'export PATH="$HOME/bin/:$PATH"' >> ~/.zshrc
   export PATH="$HOME/bin/:$PATH"
   cp $my_dir/klayout.sh $HOME/bin/

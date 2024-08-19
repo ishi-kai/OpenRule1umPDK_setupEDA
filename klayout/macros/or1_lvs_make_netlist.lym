@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<klayout-macro>
+ <description>Make netlist for KLayout LVS</description>
+ <version/>
+ <category/>
+ <prolog/>
+ <epilog/>
+ <doc/>
+ <autorun>false</autorun>
+ <autorun-early>false</autorun-early>
+ <shortcut/>
+ <show-in-menu>true</show-in-menu>
+ <group-name/>
+ <menu-path>or1&gt;end("OpenRule1um PDK").end</menu-path>
+ <interpreter>ruby</interpreter>
+ <dsl-interpreter-name/>
+ <text>module MyMacro
+ 
+  include RBA
+
+  # Options
+  simpath = "~/.xschem/simulations"
+  filename = "lvs_temp.cdl"
+  tempfile = "lvs_temp.tmp"
+  # End Options
+
+  gds_base = File.basename(RBA::Application.instance.main_window.current_view.active_cellview.filename, ".*")
+  gds_dir = File.expand_path(File.dirname(RBA::Application.instance.main_window.current_view.active_cellview.filename))
+  cell_name = RBA::CellView::active.cell_name
+
+  system( "cp -f #{simpath}/#{gds_base}.spice #{gds_dir}/#{tempfile}" )
+  system( "sed -i -e 's/.subckt #{gds_base}/.subckt #{cell_name}/g' #{gds_dir}/#{tempfile}" )
+  system( "cat #{gds_dir}/#{tempfile} | awk '!a[$0]++{print}' &gt; #{gds_dir}/#{filename}" )
+  system( "rm -rf #{gds_dir}/#{tempfile}" )
+  system( "gnome-terminal --title=Netlist --working-directory=#{gds_dir} -- sh -c 'cat #{gds_dir}/#{filename}; read line'" )
+end
+</text>
+</klayout-macro>

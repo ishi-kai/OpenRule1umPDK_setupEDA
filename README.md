@@ -2,10 +2,16 @@
 ISHI会版OpenMPW用のレイアウトを作るための環境構築用スクリプトです。  
 WSL2 (Windows Subsystem for Linux)上のUbuntu22.04とUbuntu22.04とMac Mコアシリーズで動作します。  
 
-# 実行方法
+## 実行方法
 下記のコマンドを実行するだけです。  
 
 `./pdk-setup.sh`
+
+### Mac OS
+Mac OSは上記スクリプト内のOS名の変更をしてください。  
+
+`export MAC_OS_NAME=Sonoma`
+
 
 ## xschemの追加設定
 ### シミュレーション用ファイルをインクルードする

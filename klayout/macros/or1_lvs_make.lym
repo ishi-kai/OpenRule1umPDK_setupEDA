@@ -31,10 +31,13 @@
   cell_name = RBA::CellView::active.cell_name
   system( "mkdir #{gds_dir}/lvs_work" )
   system( "cp -f #{simpath}/#{gds_base}.spice #{gds_dir}/lvs_work/#{gds_base}.net.txt" )
-  system( "cp -f #{simpath}/#{gds_base}.spice #{gds_dir}/lvs_work/#{gds_base}_reference.cir.txt" )
-  system( "sed -i -e 's/.subckt #{gds_base}/.subckt #{cell_name}/g' #{gds_dir}/lvs_work/#{gds_base}_reference.cir.txt" )
-  system( "sed -i -e 's/#{pmos}/PMOS/g' #{gds_dir}/lvs_work/#{gds_base}_reference.cir.txt" )
-  system( "sed -i -e 's/#{nmos}/NMOS/g' #{gds_dir}/lvs_work/#{gds_base}_reference.cir.txt" )
+  system( "cp -f #{simpath}/#{gds_base}.spice #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp" )
+  system( "sed -i -e 's/.subckt #{gds_base}/.subckt #{cell_name}/g' #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp" )
+  system( "sed -i -e 's/#{pmos}/PMOS/g' #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp" )
+  system( "sed -i -e 's/#{nmos}/NMOS/g' #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp" )
+  system( "sed -i -e 's/stdcells_sim/stdcells_lvs/g' #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp" )
+  system( "cat #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp | awk '!a[$0]++{print}' &gt; #{gds_dir}/lvs_work/#{gds_base}_reference.cir.txt" )
+  system( "rm -rf #{gds_dir}/lvs_work/#{gds_base}_reference.cir.tmp" )
   system( "gnome-terminal --title=Netlist --working-directory=#{gds_dir} -- sh -c 'cat #{gds_dir}/lvs_work/#{gds_base}_reference.cir.txt; read line'" )
 end
 </text>
