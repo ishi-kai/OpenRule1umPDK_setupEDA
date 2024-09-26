@@ -424,23 +424,6 @@ else
   cp -aR ./* $HOME/.klayout/salt/AnagixLoader/
 fi
 
-if [ ! -d "$HOME/.xschem/symbols" ]; then
-  mkdir -p $HOME/.xschem/symbols
-  mkdir -p $HOME/.xschem/lib
-fi
-cd $my_dir
-cp xschem/xschemrc_PTC06 $HOME/.xschem/xschemrc
-cp xschem/title_PTC06.sch $HOME/.xschem/title_PTC06.sch
-cp -aR ./xschem/symbols/* $HOME/.xschem/symbols/
-cp -aR ./xschem/lib/PTC06/* $HOME/.xschem/lib/
-
-if [ ! -d "$HOME/.klayout/macros" ]; then
-  mkdir -p $HOME/.klayout/macros
-fi
-cd $my_dir
-cp -aR ./klayout/macros/* $HOME/.klayout/macros/
-cp -f ./klayout/klayoutrc $HOME/.klayout/klayoutrc
-
 
 # Install GDSfactory
 # -----------------------------------
