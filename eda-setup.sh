@@ -404,30 +404,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
 fi
 
 
-# setup OpenRule1umPDK
-# ----------------------------------
-if [ ! -d "$SRC_DIR/OpenRule1um" ]; then
-  cd $SRC_DIR
-  git clone  https://github.com/mineda-support/OpenRule1um.git
-  cp -aR OpenRule1um $HOME/.klayout/salt/
-else
-  echo ">>>> Updating OpenRule1um"
-  cd $SRC_DIR/OpenRule1um || exit
-  git pull
-  cp -aR ./* $HOME/.klayout/salt/OpenRule1um/
-fi
-if [ ! -d "$SRC_DIR/AnagixLoader" ]; then
-  cd $SRC_DIR
-  git clone  https://github.com/mineda-support/AnagixLoader.git
-  cp -aR AnagixLoader $HOME/.klayout/salt/
-else
-  echo ">>>> Updating AnagixLoader"
-  cd $SRC_DIR/AnagixLoader || exit
-  git pull
-  cp -aR ./* $HOME/.klayout/salt/AnagixLoader/
-fi
-
-
 # Install GDSfactory
 # -----------------------------------
 if [ "$(uname)" == 'Darwin' ]; then

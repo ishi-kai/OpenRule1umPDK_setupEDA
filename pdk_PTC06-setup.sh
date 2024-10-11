@@ -32,10 +32,12 @@ export SRC_DIR="$HOME/src"
 my_path=$(realpath "$0")
 my_dir=$(dirname "$my_path")
 export SCRIPT_DIR="$my_dir"
-export KLAYOUT_VERSION=0.29.5
+export KLAYOUT_VERSION=0.29.7
 
 # for Mac
-export MAC_OS_NAME=Sonoma
+#export MAC_OS_NAME=Ventura
+#export MAC_OS_NAME=Sonoma
+export MAC_OS_NAME=Sequoia
 export TCL_VERSION=8.6.14
 export TK_VERSION=8.6.14
 export GTK_VERSION=3.24.42
@@ -63,6 +65,32 @@ fi
 cd $my_dir
 cp -aR ./klayout/macros/* $HOME/.klayout/macros/
 cp -f ./klayout/klayoutrc $HOME/.klayout/klayoutrc
+
+# setup OpenRule1umPDK
+# ----------------------------------
+if [ ! -d "$HOME/.klayout/salt" ]; then
+  mkdir -p $HOME/.klayout/salt
+fi
+if [ ! -d "$SRC_DIR/OpenRule1um" ]; then
+  cd $SRC_DIR
+  git clone  https://github.com/mineda-support/OpenRule1um.git
+  cp -aR OpenRule1um $HOME/.klayout/salt/
+else
+  echo ">>>> Updating OpenRule1um"
+  cd $SRC_DIR/OpenRule1um || exit
+  git pull
+  cp -aR ./* $HOME/.klayout/salt/OpenRule1um/
+fi
+if [ ! -d "$SRC_DIR/AnagixLoader" ]; then
+  cd $SRC_DIR
+  git clone  https://github.com/mineda-support/AnagixLoader.git
+  cp -aR AnagixLoader $HOME/.klayout/salt/
+else
+  echo ">>>> Updating AnagixLoader"
+  cd $SRC_DIR/AnagixLoader || exit
+  git pull
+  cp -aR ./* $HOME/.klayout/salt/AnagixLoader/
+fi
 
 
 # Finished
