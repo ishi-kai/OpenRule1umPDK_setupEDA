@@ -44,6 +44,10 @@ if [ "$(uname)" == 'Darwin' ]; then
     "15.0")
       export MAC_OS_NAME=Sequoia
       ;;
+    *)
+      echo "Your Mac OS Version ($VER) is not supported."
+      exit 1
+      ;;
   esac
 fi
 export TCL_VERSION=8.6.14
