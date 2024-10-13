@@ -35,9 +35,17 @@ export SCRIPT_DIR="$my_dir"
 export KLAYOUT_VERSION=0.29.7
 
 # for Mac
-#export MAC_OS_NAME=Ventura
-#export MAC_OS_NAME=Sonoma
-export MAC_OS_NAME=Sequoia
+if [ "$(uname)" == 'Darwin' ]; then
+  VER=`sw_vers -productVersion | awk -F. '{ print $1 "." $2 }'`
+  case $VER in
+    "14.0")
+      export MAC_OS_NAME=Sonoma
+      ;;
+    "15.0")
+      export MAC_OS_NAME=Sequoia
+      ;;
+  esac
+fi
 export TCL_VERSION=8.6.14
 export TK_VERSION=8.6.14
 export GTK_VERSION=3.24.42
