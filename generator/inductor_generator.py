@@ -30,6 +30,8 @@ METAL_THICKNESS = 0.854				# um Thickness of OR1 Metal2
 #RHO_STR = "0.0285"				# ohm/sq of Sky130 Metal5
 #RHO_STR = "0.047"				# ohm/sq of Sky130 Metal4,3
 RHO_STR = "0.047"				# ohm/sq of OR1 Metal2
+MIN_FREQ="1e1"
+MAX_FREQ="1e6"
 
 
 class InductorShapeType(Enum):
@@ -762,7 +764,7 @@ class InductorGenerator():
 		header_str = header_str + ".Default sigma=5.8e4 nhinc=5 nwinc=5 \n\n"
 
 		footer_str = footer_str + ".external " + body_str[1] + "\n"
-		footer_str = footer_str + ".freq fmin=1e9 fmax=3e9 ndec=10\n"
+		footer_str = footer_str + ".freq fmin=" + MIN_FREQ + " fmax=" + MAX_FREQ + " ndec=10\n"
 		footer_str = footer_str + "\n.end\n"
 
 		for n in point_Line_List:
@@ -829,10 +831,11 @@ class InductorGenerator():
 			points_L_end = points_L[InductorSideType.End.value]
 
 			# Right Side
-			formatted_msg = 'N%d x=%f y=%f z=%f \n' % (N_cnt, points_R_end[0], points_R_end[1], points_R_end[2])
-			henry_N_str = henry_N_str + formatted_msg
-			henry_N_list.append(formatted_msg)
-			N_cnt = N_cnt + 1
+			if num_N == 1:
+				formatted_msg = 'N%d x=%f y=%f z=%f \n' % (N_cnt, points_R_end[0], points_R_end[1], points_R_end[2])
+				henry_N_str = henry_N_str + formatted_msg
+				henry_N_list.append(formatted_msg)
+				N_cnt = N_cnt + 1
 			formatted_msg = 'N%d x=%f y=%f z=%f \n' % (N_cnt, points_R_start[0], points_R_start[1], points_R_start[2])
 			henry_N_str = henry_N_str + formatted_msg
 			henry_N_list.append(formatted_msg)
@@ -865,24 +868,20 @@ class InductorGenerator():
 
 				
 			# Upper Side
-			formatted_msg = 'N%d x=%f y=%f z=%f \n' % (N_cnt, points_T_end[0], points_T_end[1], points_T_end[2])
-			henry_N_str = henry_N_str + formatted_msg
-			henry_N_list.append(formatted_msg)
-			N_cnt = N_cnt + 1
 			formatted_msg = 'N%d x=%f y=%f z=%f \n' % (N_cnt, points_T_start[0], points_T_start[1], points_T_start[2])
 			henry_N_str = henry_N_str + formatted_msg
 			henry_N_list.append(formatted_msg)
 			N_cnt = N_cnt + 1
-			formatted_msg = 'E%d N%d N%d rho=%s  H=%f W=%f \n' % (E_cnt, N_cnt-2, N_cnt-1, RHO_STR, self.parameters.T, self.parameters.W)
+			if num_N == self.parameters.N:
+				formatted_msg = 'E%d N%d N%d rho=%s  H=%f W=%f \n' % (E_cnt, N_cnt-3, N_cnt-1, RHO_STR, self.parameters.T, self.parameters.W)
+			else:
+				formatted_msg = 'E%d N%d N%d rho=%s  H=%f W=%f \n' % (E_cnt, N_cnt-2, N_cnt-1, RHO_STR, self.parameters.T, self.parameters.W)
+
 			henry_E_str = henry_E_str + formatted_msg
 			point_Line_List.append((henry_N_list[N_cnt-2], henry_N_list[N_cnt-1]))
 			E_cnt = E_cnt + 1
 
 			# Left Side
-			formatted_msg = 'N%d x=%f y=%f z=%f \n' % (N_cnt, points_L_end[0], points_L_end[1], points_L_end[2])
-			henry_N_str = henry_N_str + formatted_msg
-			henry_N_list.append(formatted_msg)
-			N_cnt = N_cnt + 1
 			formatted_msg = 'N%d x=%f y=%f z=%f \n' % (N_cnt, points_L_start[0], points_L_start[1] - self.parameters.S - self.parameters.W, points_L_start[2])
 			henry_N_str = henry_N_str + formatted_msg
 			henry_N_list.append(formatted_msg)
@@ -895,10 +894,6 @@ class InductorGenerator():
 			# Bottom Side
 			if num_N != self.parameters.N:
 				formatted_msg = 'N%d x=%f y=%f z=%f \n' % (N_cnt, points_B_start[0] + self.parameters.S + self.parameters.W, points_B_start[1] - self.parameters.S - self.parameters.W, points_B_start[2])
-				henry_N_str = henry_N_str + formatted_msg
-				henry_N_list.append(formatted_msg)
-				N_cnt = N_cnt + 1
-				formatted_msg = 'N%d x=%f y=%f z=%f \n' % (N_cnt, points_B_end[0], points_B_end[1] - self.parameters.S - self.parameters.W, points_B_end[2])
 				henry_N_str = henry_N_str + formatted_msg
 				henry_N_list.append(formatted_msg)
 				N_cnt = N_cnt + 1
