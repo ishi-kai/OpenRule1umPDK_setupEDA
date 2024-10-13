@@ -45,6 +45,31 @@ qtがインストール済みの場合は削除する必要があります。
 - pMOS Cap (ACTEG07) 5.34fF(蓄積・強反転)/3.54fF(弱反転) (77pF/51pF, 120um/120um)
 
 
+# inductorの生成方法
+自動生成ツールを用意してあります。  
+インダクタシミュレーターの[FastHenry2](https://www.fastfieldsolvers.com/fasthenry2.htm)用のファイルとGDSファイルを生成します。  
+
+- [./generator/inductor_generator.py](./generator/inductor_generator.py) 
+
+## 各種設定
+- R
+    - 内側の内径[um]
+- S
+    - ワイヤー間のスペース[um]
+- W
+    - ワイヤーの幅[um]
+- N
+    - 巻き数
+- T
+    - ワイヤーの厚さ[um]
+- GuardRing_S
+    - inductorからガードリングまでの距離[um]
+- GuardRing_W
+    - ガードリングのワイヤーの厚さ[um]
+- ガードリング
+    - inductorは非常に他のワイヤーからの影響を受けやすいため、安全距離として設けているワイヤーの囲み
+
+
 # klayoutの追加設定
 ## テクノロジーの選択
 テクノロジーで「OpenRule1umPDK」を選択する。
