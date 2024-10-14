@@ -25,7 +25,7 @@
 # and a few other tools for use with OpenRule1umPDK.
 # This script supports WSL(Windows Subsystem for Linux), Ubuntu 22.04, Mac M core series.
 # ========================================================================
-exit
+
 # Define setup environment
 # ------------------------
 export SRC_DIR="$HOME/src"
