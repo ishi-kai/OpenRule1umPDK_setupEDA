@@ -91,6 +91,9 @@ else
   echo ">>>> Updating OpenRule1um"
   cd $SRC_DIR/OpenRule1um || exit
   git pull
+  if [ ! -d "$HOME/.klayout/salt/OpenRule1um" ]; then
+    mkdir -p $HOME/.klayout/salt/OpenRule1um
+  fi
   cp -aR ./* $HOME/.klayout/salt/OpenRule1um/
 fi
 if [ ! -d "$SRC_DIR/AnagixLoader" ]; then
@@ -101,6 +104,9 @@ else
   echo ">>>> Updating AnagixLoader"
   cd $SRC_DIR/AnagixLoader || exit
   git pull
+  if [ ! -d "$HOME/.klayout/salt/AnagixLoader" ]; then
+    mkdir -p $HOME/.klayout/salt/AnagixLoader
+  fi
   cp -aR ./* $HOME/.klayout/salt/AnagixLoader/
 fi
 

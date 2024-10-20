@@ -35,7 +35,7 @@ C {devices/title.sym} 160 -30 0 0 {name=l1 author="ISHI-kai"}
 C {devices/code.sym} 1170 -600 0 0 {name=MF20_MODELS
 only_toplevel=true
 format="tcleval( @value )"
-value=".include $::LIB/SOI_CMOS
+value=".include $::LIB/SOI_CMOS"
 spice_ignore=false}
 C {PMOS_MIN.sym} 100 -600 0 0 {name=M1 model=pch w=5u l=0.18u as=0 ps=0 ad=0 pd=0 m=1}
 C {NMOS_MIN.sym} 90 -440 0 0 {name=M2 model=nch w=5u l=0.18u as=0 ps=0 ad=0 pd=0 m=1}

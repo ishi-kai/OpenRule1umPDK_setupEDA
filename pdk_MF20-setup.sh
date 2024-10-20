@@ -73,6 +73,9 @@ else
   echo ">>>> Updating ICPS2023_5"
   cd $SRC_DIR/ICPS2023_5 || exit
   git pull
+  if [ ! -d "$HOME/.klayout/salt/ICPS2023_5" ]; then
+    mkdir -p $HOME/.klayout/salt/ICPS2023_5
+  fi
   cp -aR ./* $HOME/.klayout/salt/ICPS2023_5/
 fi
 
@@ -97,6 +100,9 @@ else
   echo ">>>> Updating AnagixLoader"
   cd $SRC_DIR/AnagixLoader || exit
   git pull
+  if [ ! -d "$HOME/.klayout/salt/AnagixLoader" ]; then
+    mkdir -p $HOME/.klayout/salt/AnagixLoader
+  fi
   cp -aR ./* $HOME/.klayout/salt/AnagixLoader/
 fi
 
