@@ -14,11 +14,19 @@ brewのqt@5が必要です。
 qtがインストール済みの場合は削除する必要があります。  
 
 
-## フェニテックシャトルの場合
+## フェニテックシャトルPDKの場合
 `./pdk_PTC06-setup.sh`
 
-## 東海理化シャトルの場合
+## 東海理化シャトルPDKの場合
 `./pdk_TR10-setup.sh`
+
+## ミニマルファブPDKの場合
+`./pdk_MF20-setup.sh`
+
+## PDKの削除
+`uninstall.sh`
+
+PDKを変えたい場合はPDK削除後、PDKのみインストールして下さい。
 
 
 # xschemの追加設定
@@ -76,12 +84,23 @@ qtがインストール済みの場合は削除する必要があります。
 ![フレーム用のGDSファイル](./images/pad_frame.png)
 
 
+### 東海理化シャトル用
+後日アップロード予定
+
+
+### ミニマルファブ用
+[フレーム用のGDSファイル](https://github.com/mineda-support/ICPS2023_5/blob/main/Samples/Semicon2023/base_contest2023.GDS)
+![フレーム用のGDSファイル](./images/minimalfab_2024_frame.png)
+
+
 ### パッド
 本番のパッドではESD対策が施されています。（ただのメタルがあるだけのように見えますが、最終提出の時にはESD対策が施されたパッドへ置き換わります。）  
 もし、アナログ回路の実装などでESD対策が不要や自分で実装したい場合には下記の手順に従ってESD未対策のパッドをお使いください。  
 
 ![Pad変更手順1](./images/pad_noesd_1.jpg)
 ![Pad変更手順2](./images/pad_noesd_2.jpg)
+
+
 
 
 # サンプル
