@@ -80,8 +80,8 @@ else
 fi
 
 cd $my_dir
-cp xschem/xschemrc_MF20 $HOME/.xschem/xschemrc
-cp xschem/title_MF20.sch $HOME/.xschem/title_MF20.sch
+cp ./xschem/xschemrc_MF20 $HOME/.xschem/xschemrc
+cp ./xschem/title_MF20.sch $HOME/.xschem/title_MF20.sch
 
 if [ ! -d "$HOME/.xschem/symbols" ]; then
   mkdir -p $HOME/.xschem/symbols/MF20

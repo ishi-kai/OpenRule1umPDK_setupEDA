@@ -66,8 +66,8 @@ if [ ! -d "$HOME/.xschem/symbols" ]; then
   mkdir -p $HOME/.xschem/lib
 fi
 cd $my_dir
-cp xschem/xschemrc_PTC06 $HOME/.xschem/xschemrc
-cp xschem/title_PTC06.sch $HOME/.xschem/title_PTC06.sch
+cp ./xschem/xschemrc_PTC06 $HOME/.xschem/xschemrc
+cp ./xschem/title_PTC06.sch $HOME/.xschem/title_PTC06.sch
 cp -aR ./xschem/symbols/* $HOME/.xschem/symbols/
 cp -aR ./xschem/lib/PTC06/* $HOME/.xschem/lib/
 
