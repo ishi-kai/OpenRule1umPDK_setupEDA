@@ -36,12 +36,12 @@ export KLAYOUT_VERSION=0.29.7
 
 # for Mac
 if [ "$(uname)" == 'Darwin' ]; then
-  VER=`sw_vers -productVersion | awk -F. '{ print $1 "." $2 }'`
+  VER=`sw_vers -productVersion | awk -F. '{ print $1 }'`
   case $VER in
-    "14.0")
+    "14")
       export MAC_OS_NAME=Sonoma
       ;;
-    "15.0")
+    "15")
       export MAC_OS_NAME=Sequoia
       ;;
     *)
