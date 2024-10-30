@@ -7,13 +7,13 @@ S {}
 E {}
 N 190 -220 230 -220 {
 lab=vout}
-N 230 -220 230 -120 {
+N 230 -170 230 -120 {
 lab=vout}
 N 190 -120 230 -120 {
 lab=vout}
 N 120 -90 150 -90 {
 lab=vin}
-N 120 -250 120 -90 {
+N 120 -170 120 -90 {
 lab=vin}
 N 120 -250 150 -250 {
 lab=vin}
@@ -21,7 +21,7 @@ N 50 -170 120 -170 {
 lab=vin}
 N 230 -170 300 -170 {
 lab=vout}
-N 190 -60 190 -10 {
+N 190 -50 190 -10 {
 lab=GND}
 N 190 -90 200 -90 {
 lab=GND}
@@ -52,6 +52,12 @@ lab=#net1}
 N 300 -170 300 -100 {
 lab=vout}
 N 300 -40 300 -10 {
+lab=GND}
+N 120 -250 120 -170 {
+lab=vin}
+N 230 -220 230 -170 {
+lab=vout}
+N 190 -60 190 -50 {
 lab=GND}
 C {devices/vdd.sym} 190 -400 0 0 {name=l1}
 C {devices/gnd.sym} 190 -10 0 0 {name=l2}
@@ -93,4 +99,4 @@ format="tcleval( @value )"
 value=".include $::LIB/SOI_CMOS"
 spice_ignore=false}
 C {PMOS_MIN.sym} 150 -250 0 0 {name=M1 model=pch w=20u l=6u as=0 ps=0 ad=0 pd=0 m=1}
-C {NMOS_MIN.sym} 150 -90 0 0 {name=M2 model=nch w=10u l=6u as=0 ps=0 ad=0 pd=0 m=1}
+C {NMOS_MIN.sym} 150 -90 0 0 {name=M2 model=nch w=15u l=6u as=0 ps=0 ad=0 pd=0 m=1}

@@ -38,8 +38,8 @@ lab=VDD}
 N 190 -250 200 -250 {
 lab=VDD}
 C {PMOS_MIN.sym} 150 -250 0 0 {name=M1 model=pch w=20u l=6u as=0 ps=0 ad=0 pd=0 m=1}
-C {NMOS_MIN.sym} 150 -90 0 0 {name=M2 model=nch w=10u l=6u as=0 ps=0 ad=0 pd=0 m=1}
+C {NMOS_MIN.sym} 150 -90 0 0 {name=M2 model=nch w=15u l=6u as=0 ps=0 ad=0 pd=0 m=1}
 C {iopin.sym} 190 -340 2 0 {name=p3 lab=VDD}
 C {iopin.sym} 190 -10 0 0 {name=p4 lab=VSS}
-C {ipin.sym} 50 -170 0 0 {name=p1 lab=A}
-C {opin.sym} 300 -170 0 0 {name=p2 lab=Q}
+C {iopin.sym} 300 -170 0 0 {name=p2 lab=Q}
+C {iopin.sym} 50 -170 2 0 {name=p1 lab=A}
