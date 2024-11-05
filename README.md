@@ -83,6 +83,14 @@ PDKを変えたい場合はPDK削除後、PDKのみインストールして下�
 [フレーム用のGDSファイル](./GDS/PTC06/top_frame.gds)
 ![フレーム用のGDSファイル](./images/pad_frame.png)
 
+#### パッド
+本番のパッドではESD対策が施されています。（ただのメタルがあるだけのように見えますが、最終提出の時にはESD対策が施されたパッドへ置き換わります。）  
+もし、アナログ回路の実装などでESD対策が不要や自分で実装したい場合には下記の手順に従ってESD未対策のパッドをお使いください。  
+
+![Pad変更手順1](./images/pad_noesd_1.jpg)
+![Pad変更手順2](./images/pad_noesd_2.jpg)
+
+
 
 ### 東海理化シャトル用
 後日アップロード予定
@@ -91,16 +99,6 @@ PDKを変えたい場合はPDK削除後、PDKのみインストールして下�
 ### ミニマルファブ用
 [フレーム用のGDSファイル](https://github.com/mineda-support/ICPS2023_5/blob/main/Samples/Semicon2023/base_contest2023.GDS)
 ![フレーム用のGDSファイル](./images/minimalfab_2024_frame.png)
-
-
-### パッド
-本番のパッドではESD対策が施されています。（ただのメタルがあるだけのように見えますが、最終提出の時にはESD対策が施されたパッドへ置き換わります。）  
-もし、アナログ回路の実装などでESD対策が不要や自分で実装したい場合には下記の手順に従ってESD未対策のパッドをお使いください。  
-
-![Pad変更手順1](./images/pad_noesd_1.jpg)
-![Pad変更手順2](./images/pad_noesd_2.jpg)
-
-
 
 
 # サンプル
