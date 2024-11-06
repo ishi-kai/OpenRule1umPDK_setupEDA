@@ -79,14 +79,13 @@ else
   cp -aR ./* $HOME/.klayout/salt/ICPS2023_5/
 fi
 
-cd $my_dir
-cp ./xschem/xschemrc_MF20 $HOME/.xschem/xschemrc
-cp ./xschem/title_MF20.sch $HOME/.xschem/title_MF20.sch
-
 if [ ! -d "$HOME/.xschem/symbols" ]; then
   mkdir -p $HOME/.xschem/symbols/MF20
   mkdir -p $HOME/.xschem/lib
 fi
+cd $my_dir
+cp ./xschem/xschemrc_MF20 $HOME/.xschem/xschemrc
+cp ./xschem/title_MF20.sch $HOME/.xschem/title_MF20.sch
 cd $SRC_DIR/ICPS2023_5 || exit
 cp -aR ./Technology/tech/symbols/Xschem/* $HOME/.xschem/symbols/MF20/
 cp -aR ./Technology/tech/models/* $HOME/.xschem/lib/
