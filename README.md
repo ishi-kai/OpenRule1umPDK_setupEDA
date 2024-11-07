@@ -48,7 +48,8 @@ PDKを変えたい場合はPDK削除後、PDKのみインストールして下�
 
 ## ミニマルファブPDKの場合
 ### コンテスト第一部用のschematic
-URAさんによりコンテスト第一部用schematicが提供されましたので、LVSなどをする場合にお使いください。
+URAさんによりコンテスト第一部用schematicが提供されましたので、LVSなどをする場合にお使いください。  
+
 [コンテスト第一部用のschematic](./schematic/MF20/base_contest2024_maze_de_inverter.sch)  
 
 ![コンテスト第一部用のschematic](./images/MF20_contest_1part_schematic.png)
