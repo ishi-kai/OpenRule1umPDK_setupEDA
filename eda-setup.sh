@@ -70,9 +70,11 @@ if [ "$(uname)" == 'Darwin' ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
+    brew update
+    brew install wget
   fi
   brew update
-  brew install wget
+  brew upgrade
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
   OS='Linux'
   sudo sed -i 's/# deb-src/deb-src/g' /etc/apt/sources.list
@@ -262,6 +264,7 @@ if [ "$(uname)" == 'Darwin' ]; then
     git pull
   fi
   python3 build4mac.py -r HB33 -p HBAuto -q Qt5Brew -m ‘—jobs=8’ -n -u
+  rm -fr $HOME/bin/klayout.app
   mkdir -p $HOME/bin/klayout.app
   cp -aR $SRC_DIR/klayout/qt5Brew.bin.macos-$MAC_OS_NAME-release-Rhb33Phbauto/* $HOME/bin/klayout.app/
   echo 'export PATH="$HOME/bin/:$PATH"' >> ~/.zshrc
