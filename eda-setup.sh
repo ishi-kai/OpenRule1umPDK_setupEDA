@@ -71,6 +71,7 @@ if [ "$(uname)" == 'Darwin' ]; then
     (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
     brew update
+    brew upgrade
     brew install wget
   fi
   brew update
