@@ -8,12 +8,6 @@ WSL2 (Windows Subsystem for Linux)上のUbuntu22.04とUbuntu22.04とMac Mコア�
 ## 共通コマンド
 `./eda-setup.sh`
 
-### Mac OS
-#### QTの変更
-brewのqt@5が必要です。  
-qtがインストール済みの場合は削除する必要があります。  
-
-
 ## フェニテックシャトルPDKの場合
 `./pdk_PTC06-setup.sh`
 
