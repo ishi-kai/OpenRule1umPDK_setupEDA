@@ -32,7 +32,7 @@ export SRC_DIR="$HOME/src"
 my_path=$(realpath "$0")
 my_dir=$(dirname "$my_path")
 export SCRIPT_DIR="$my_dir"
-export KLAYOUT_VERSION=0.29.7
+export KLAYOUT_VERSION=0.29.10
 
 # for Mac
 if [ "$(uname)" == 'Darwin' ]; then
@@ -248,14 +248,10 @@ echo ">>>> Installing KLayout-$KLAYOUT_VERSION"
 if [ "$(uname)" == 'Darwin' ]; then
   OS='Mac'
   python3 -m pip install docopt pandas scipy matplotlib pip-autoremove --break-system-packages
-#  brew install klayout
-#  wget https://www.klayout.org/downloads/MacOS/HW-klayout-$KLAYOUT_VERSION-macOS-$MAC_OS_NAME-1-qt5MP-RsysPhb311.dmg
-#  hdiutil mount HW-klayout-$KLAYOUT_VERSION-macOS-$MAC_OS_NAME-1-qt5MP-RsysPhb311.dmg
-#  cd /Volumes/KLayout/
-#  hdiutil detach /Volumes/KLayout/
   if [ ! -d "$SRC_DIR/klayout" ]; then
     echo ">>>> Building klayout"
-    brew install qt5
+    brew install qt pyqt qt-builder
+    brew link qt --force
     brew install libgit2
     git clone https://github.com/KLayout/klayout.git "$SRC_DIR/klayout"
     cd "$SRC_DIR/klayout" || exit
@@ -264,10 +260,10 @@ if [ "$(uname)" == 'Darwin' ]; then
     cd "$SRC_DIR/klayout" || exit
     git pull
   fi
-  python3 build4mac.py -r HB33 -p HBAuto -q Qt5Brew -m ‘—jobs=8’ -n -u
+  python3 build4mac.py -r HB33 -p HBAuto -q Qt6Brew -m ‘—jobs=8’ -n -u
   rm -fr $HOME/bin/klayout.app
   mkdir -p $HOME/bin/klayout.app
-  cp -aR $SRC_DIR/klayout/qt5Brew.bin.macos-$MAC_OS_NAME-release-Rhb33Phbauto/* $HOME/bin/klayout.app/
+  cp -aR $SRC_DIR/klayout/qt6Brew.bin.macos-$MAC_OS_NAME-release-Rhb33Phbauto/* $HOME/bin/klayout.app/
   echo 'export PATH="$HOME/bin/:$PATH"' >> ~/.zshrc
   export PATH="$HOME/bin/:$PATH"
   cp $my_dir/klayout.sh $HOME/bin/
