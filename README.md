@@ -68,19 +68,19 @@ URAさんによりコンテスト第一部用schematicが提供されました�
 ピン番号は、下面左端（南面西端）が1番で左回りでカウントします。  
 
 [フレーム用のGDSファイル](./GDS/PTC06/top_frame.gds)
-![フレーム用のGDSファイル](./images/pad_frame.png)
+![フレーム用のGDSファイル](./images/PTC06_frame.png)
 
 #### パッド
 本番のパッドではESD対策が施されています。（ただのメタルがあるだけのように見えますが、最終提出の時にはESD対策が施されたパッドへ置き換わります。）  
 もし、アナログ回路の実装などでESD対策が不要や自分で実装したい場合には下記の手順に従ってESD未対策のパッドをお使いください。  
 
-![Pad変更手順1](./images/pad_noesd_1.jpg)
-![Pad変更手順2](./images/pad_noesd_2.jpg)
-
+![Pad変更手順1](./images/PTC06_pad_noesd_1.jpg)
+![Pad変更手順2](./images/PTC06_pad_noesd_2.jpg)
 
 
 ### 東海理化シャトルPDK用
-後日アップロード予定
+[フレーム用のGDSファイル](./GDS/TR10/top_frame.gds)
+![フレーム用のGDSファイル](./images/TR10_frame.png)
 
 
 ### ミニマルファブPDK用
