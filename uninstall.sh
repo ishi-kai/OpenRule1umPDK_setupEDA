@@ -1,6 +1,6 @@
 #!/bin/bash
 # ========================================================================
-# IIC Open-Source EDA Environment for Ubuntu WSL2 and Mac M core Series
+# IIC Open-Source EDA Environment for Ubuntu WSL2 and macOS.
 # This script will delete some stuffs in your home directory
 # to change the PDK. 
 # ========================================================================
