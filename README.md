@@ -1,24 +1,24 @@
 # 何か？
 ISHI会版OpenMPW用のレイアウトを作るための環境構築用スクリプトです。  
-WSL2 (Windows Subsystem for Linux)上のUbuntu22.04とUbuntu22.04とMac Mコアシリーズで動作します。  
+WSL2 (Windows Subsystem for Linux)上のUbuntu22.04とUbuntu22.04とmacOSで動作します。  
 
 # 実行方法
 下記のコマンドを実行するだけです。  
 
 ## 共通コマンド
-`./eda-setup.sh`
+`bash eda-setup.sh`
 
 ## フェニテックシャトルPDKの場合
-`./pdk_PTC06-setup.sh`
+`bash pdk_PTC06-setup.sh`
 
 ## 東海理化シャトルPDKの場合
-`./pdk_TR10-setup.sh`
+`bash pdk_TR10-setup.sh`
 
 ## ミニマルファブPDKの場合
-`./pdk_MF20-setup.sh`
+`bash pdk_MF20-setup.sh`
 
 ## PDKの削除
-`uninstall.sh`
+`bash uninstall.sh`
 
 PDKを変えたい場合はPDK削除後、PDKのみインストールして下さい。
 

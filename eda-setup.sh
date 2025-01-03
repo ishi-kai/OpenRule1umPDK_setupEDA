@@ -2,7 +2,7 @@
 # ========================================================================
 # Initialization of IIC Open-Source EDA Environment for OpenRule1umPDK
 #
-# SPDX-FileCopyrightText: 2023-2024 Mori Mizuki, Noritsuna Imamura 
+# SPDX-FileCopyrightText: 2023-2025 Mori Mizuki, Noritsuna Imamura 
 # ISHI-KAI
 # 
 # SPDX-FileCopyrightText: 2021-2022 Harald Pretl, Johannes Kepler 
@@ -23,7 +23,7 @@
 #
 # This script installs xschem, ngspice, magic, netgen, klayout
 # and a few other tools for use with OpenRule1umPDK.
-# This script supports WSL(Windows Subsystem for Linux), Ubuntu 22.04, Mac M core series.
+# This script supports WSL(Windows Subsystem for Linux), Ubuntu 22.04, macOS.
 # ========================================================================
 
 # Define setup environment
@@ -49,6 +49,7 @@ if [ "$(uname)" == 'Darwin' ]; then
       exit 1
       ;;
   esac
+  export MAC_ARCH_NAME=`uname -m`
 fi
 export TCL_VERSION=8.6.14
 export TK_VERSION=8.6.14
@@ -89,6 +90,7 @@ else
   echo "Your platform ($(uname -a)) is not supported."
   exit 1
 fi
+mkdir $SRC_DIR
 cd $SRC_DIR
 
 
@@ -221,16 +223,17 @@ if [ ! -d "$SRC_DIR/xschem-gaw" ]; then
   fi
   git clone https://github.com/StefanSchippers/xschem-gaw.git "$SRC_DIR/xschem-gaw"
   cd "$SRC_DIR/xschem-gaw" || exit
-   aclocal && automake --add-missing && autoconf
+  aclocal && automake --add-missing && autoconf
+  export GETTEXT_VERSION=`gettext --version | awk 'NR==1{print $4}'`
   if [ "$(uname)" == 'Darwin' ]; then
     OS='Mac'
-#    export LDFLAGS="-L/usr/X11/lib $LDFLAGS"
-    sed -i '' 's/GETTEXT_MACRO_VERSION = 0.18/GETTEXT_MACRO_VERSION = 0.20/g' po/Makefile.in.in
+    if [ "$(MAC_ARCH_NAME)" == 'arm64' ]; then
+      sed -i '' "s/GETTEXT_MACRO_VERSION = 0.18/GETTEXT_MACRO_VERSION = $GETTEXT_VERSION/g" po/Makefile.in.in
+    fi
     ./configure --enable-gawsound=no LDFLAGS="-L/usr/X11/lib"
   elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     OS='Linux'
-    #  FIXME this is just a WA for 22.04 LTS
-    sed -i 's/GETTEXT_MACRO_VERSION = 0.18/GETTEXT_MACRO_VERSION = 0.20/g' po/Makefile.in.in
+    sed -i "s/GETTEXT_MACRO_VERSION = 0.18/GETTEXT_MACRO_VERSION = $GETTEXT_VERSION/g" po/Makefile.in.in
     ./configure
   fi
 else
@@ -250,10 +253,19 @@ if [ "$(uname)" == 'Darwin' ]; then
   python3 -m pip install docopt pandas scipy matplotlib pip-autoremove --break-system-packages
   if [ ! -d "$SRC_DIR/klayout" ]; then
     echo ">>>> Building klayout"
-    brew install qt pyqt qt-builder
+    if [ "$(MAC_ARCH_NAME)" == 'arm64' ]; then
+      brew install qt pyqt qt-builder
+    else
+      brew install qt pyqt pyqt-builder
+    fi
     brew link qt --force
     brew install libgit2
-    git clone https://github.com/KLayout/klayout.git "$SRC_DIR/klayout"
+    brew install ruby@3.3
+    brew link ruby@3.3 --force
+    export PATH="$(brew --prefix ruby@3.3)/bin:$PATH"
+    export LDFLAGS="-L$(brew --prefix ruby@3.3)/lib"
+    export CPPFLAGS="-I$(brew --prefix ruby@3.3)/include"
+    git clone --depth 1 https://github.com/KLayout/klayout.git "$SRC_DIR/klayout"
     cd "$SRC_DIR/klayout" || exit
   else
     echo ">>>> Updating klayout"
@@ -351,12 +363,8 @@ if [ ! -d "$SRC_DIR/ngspice" ]; then
     brew install lex
     brew install fontconfig
     brew install m4
-#    echo 'export PATH="/opt/homebrew/opt/m4/bin:$PATH"' >> ~/.zshrc    
-    export PATH="/opt/homebrew/opt/m4/bin:$PATH"
-    brew link bison --force
-#    echo 'export PATH="/opt/homebrew/opt/bison/bin:$PATH"' >> ~/.zshrc
-#    export PATH="/opt/homebrew/opt/bison/bin:$PATH"
-#    export LDFLAGS="-L/opt/homebrew/opt/bison/lib $LDFLAGS"
+    export PATH="$(brew --prefix m4)/bin:$PATH"
+    export PATH="$(brew --prefix bison)/bin:$PATH"
     brew install libomp
   elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     OS='Linux'
@@ -378,7 +386,7 @@ if [ ! -d "$SRC_DIR/ngspice" ]; then
 
   if [ "$(uname)" == 'Darwin' ]; then
     OS='Mac'
-    ./configure --disable-debug --with-readline=no --enable-openmp --with-x CXX="g++$CXX_VERSION" CC="gcc$CC_VERSION" CFLAGS="-m64 -O2 -Wno-error=implicit-function-declaration -Wno-error=implicit-int" CPPFLAGS="-I/opt/homebrew/opt/freetype2/include/freetype2/ -I/opt/homebrew/opt/libomp/include/" LDFLAGS="-m64 -s -L/opt/homebrew/opt/freetype2/lib/ -L/opt/homebrew/opt/fontconfig/lib/ -L/opt/homebrew/opt/libomp/lib/ -L/usr/X11/lib/"
+    ./configure --disable-debug --with-readline=no --enable-openmp --with-x CXX="g++$CXX_VERSION" CC="gcc$CC_VERSION" CFLAGS="-m64 -O2 -Wno-error=implicit-function-declaration -Wno-error=implicit-int" CPPFLAGS="-I$(brew --prefix freetype2)/include/freetype2/ -I$(brew --prefix libomp)/include/" LDFLAGS="-m64 -s -L$(brew --prefix freetype2)/lib/ -L$(brew --prefix fontconfig)/lib/ -L$(brew --prefix libomp)/lib/ -L/usr/X11/lib/"
     sed -i '' 's/TCGETS/TIOCMGET/g' src/frontend/parser/complete.c
     sed -i '' 's/TCSETS/TIOCMSET/g' src/frontend/parser/complete.c
     sed -i '' 's/LEX = :/LEX = lex/g' src/xspice/cmpp/Makefile

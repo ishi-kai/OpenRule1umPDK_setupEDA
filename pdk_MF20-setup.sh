@@ -2,7 +2,7 @@
 # ========================================================================
 # Initialization of IIC Open-Source EDA Environment for OpenRule1umPDK
 #
-# SPDX-FileCopyrightText: 2023-2024 Mori Mizuki, Noritsuna Imamura 
+# SPDX-FileCopyrightText: 2023-2025 Mori Mizuki, Noritsuna Imamura 
 # ISHI-KAI
 # 
 # SPDX-FileCopyrightText: 2021-2022 Harald Pretl, Johannes Kepler 
@@ -23,7 +23,7 @@
 #
 # This script installs xschem, ngspice, magic, netgen, klayout
 # and a few other tools for use with OpenRule1umPDK.
-# This script supports WSL(Windows Subsystem for Linux), Ubuntu 22.04, Mac M core series.
+# This script supports WSL(Windows Subsystem for Linux), Ubuntu 22.04, macOS.
 # ========================================================================
 
 # Define setup environment
@@ -49,6 +49,7 @@ if [ "$(uname)" == 'Darwin' ]; then
       exit 1
       ;;
   esac
+  export MAC_ARCH_NAME=`uname -m`
 fi
 export TCL_VERSION=8.6.14
 export TK_VERSION=8.6.14
