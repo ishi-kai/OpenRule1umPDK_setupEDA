@@ -260,11 +260,7 @@ if [ "$(uname)" == 'Darwin' ]; then
     fi
     brew link qt --force
     brew install libgit2
-    brew install ruby@3.3
-    brew link ruby@3.3 --force
-    export PATH="$(brew --prefix ruby@3.3)/bin:$PATH"
-    export LDFLAGS="-L$(brew --prefix ruby@3.3)/lib"
-    export CPPFLAGS="-I$(brew --prefix ruby@3.3)/include"
+    brew install ruby
     git clone --depth 1 https://github.com/KLayout/klayout.git "$SRC_DIR/klayout"
     cd "$SRC_DIR/klayout" || exit
   else
@@ -272,7 +268,7 @@ if [ "$(uname)" == 'Darwin' ]; then
     cd "$SRC_DIR/klayout" || exit
     git pull
   fi
-  python3 build4mac.py -r HB33 -p HBAuto -q Qt6Brew -m ‘—jobs=8’ -n -u
+  python3 build4mac.py -r HB34 -p HBAuto -q Qt6Brew -m ‘—jobs=8’ -n -u
   rm -fr $HOME/bin/klayout.app
   mkdir -p $HOME/bin/klayout.app
   cp -aR $SRC_DIR/klayout/qt6Brew.bin.macos-$MAC_OS_NAME-release-Rhb33Phbauto/* $HOME/bin/klayout.app/
