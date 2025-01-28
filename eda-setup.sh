@@ -224,7 +224,8 @@ if [ ! -d "$SRC_DIR/xschem-gaw" ]; then
   git clone https://github.com/StefanSchippers/xschem-gaw.git "$SRC_DIR/xschem-gaw"
   cd "$SRC_DIR/xschem-gaw" || exit
   aclocal && automake --add-missing && autoconf
-  export GETTEXT_VERSION=`gettext --version | awk 'NR==1{print $4}'`
+#  export GETTEXT_VERSION=`gettext --version | awk 'NR==1{print $4}'`
+  export GETTEXT_VERSION=0.22
   if [ "$(uname)" == 'Darwin' ]; then
     OS='Mac'
     if [ "$(MAC_ARCH_NAME)" == 'arm64' ]; then
