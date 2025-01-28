@@ -398,9 +398,13 @@ if [ ! -d "$SRC_DIR/ngspice" ]; then
   fi
 else
   echo ">>>> Updating ngspice"
-        cd "$SRC_DIR/ngspice" || exit
-        git pull
-  export PATH="/opt/homebrew/opt/m4/bin:$PATH"
+  cd "$SRC_DIR/ngspice" || exit
+  git pull
+  if [ "$(uname)" == 'Darwin' ]; then
+    OS='Mac'
+    export PATH="$(brew --prefix m4)/bin:$PATH"
+    export PATH="$(brew --prefix bison)/bin:$PATH"
+  fi
 fi
 make clean
 make -j"$(nproc)" && sudo make install
