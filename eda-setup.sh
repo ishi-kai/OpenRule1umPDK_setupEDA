@@ -228,9 +228,7 @@ if [ ! -d "$SRC_DIR/xschem-gaw" ]; then
   export GETTEXT_VERSION=0.22
   if [ "$(uname)" == 'Darwin' ]; then
     OS='Mac'
-    if [ "$(MAC_ARCH_NAME)" == 'arm64' ]; then
-      sed -i '' "s/GETTEXT_MACRO_VERSION = 0.18/GETTEXT_MACRO_VERSION = $GETTEXT_VERSION/g" po/Makefile.in.in
-    fi
+    sed -i '' "s/GETTEXT_MACRO_VERSION = 0.18/GETTEXT_MACRO_VERSION = $GETTEXT_VERSION/g" po/Makefile.in.in
     ./configure --enable-gawsound=no LDFLAGS="-L/usr/X11/lib"
   elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     OS='Linux'
