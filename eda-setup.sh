@@ -271,7 +271,7 @@ if [ "$(uname)" == 'Darwin' ]; then
   python3 build4mac.py -r HB34 -p HBAuto -q Qt6Brew -m ‘—jobs=8’ -n -u
   rm -fr $HOME/bin/klayout.app
   mkdir -p $HOME/bin/klayout.app
-  cp -aR $SRC_DIR/klayout/qt6Brew.bin.macos-$MAC_OS_NAME-release-Rhb33Phbauto/* $HOME/bin/klayout.app/
+  cp -aR $SRC_DIR/klayout/qt6Brew.bin.macos-$MAC_OS_NAME-release-Rhb34Phbauto/* $HOME/bin/klayout.app/
   echo 'export PATH="$HOME/bin/:$PATH"' >> ~/.zshrc
   export PATH="$HOME/bin/:$PATH"
   cp $my_dir/klayout.sh $HOME/bin/
