@@ -17,6 +17,12 @@ WSL2 (Windows Subsystem for Linux)上のUbuntu22.04とUbuntu22.04とmacOSで動�
 ## ミニマルファブPDKの場合
 `bash pdk_MF20-setup.sh`
 
+## iHPシャトルPDKの場合
+`bash pdk_ihp-sg13g2-setup.sh`
+
+## TinyTapeout PDKの場合
+`bash pdk_sky130-setup.sh`
+
 ## PDKの削除
 `bash uninstall.sh`
 
@@ -55,6 +61,11 @@ URAさんによりコンテスト第一部用schematicが提供されました�
 [コンテスト第一部用のschematic](./schematic/MF20/base_contest2024_maze_de_inverter.sch)  
 
 ![コンテスト第一部用のschematic](./images/MF20_contest_1part_schematic.png)
+
+
+## iHPシャトルPDKの場合
+
+## TinyTapeout PDKの場合
 
 
 # klayout
@@ -96,6 +107,15 @@ URAさんによりコンテスト第一部用schematicが提供されました�
 ![フレーム用のGDSファイル](./images/minimalfab_2024_frame.png)
 
 
+## iHPシャトルPDK用
+iHPシャトルに用意されているフレームはありません。ボンディングマシンやパッケージの依頼先に合わせて自分で設計する必要があります。  
+
+
+### TinyTapeoutPDK用
+* [フレーム用のGDSファイル](TT/gds/tt_um_username_projectname.gds)
+![フレーム用のGDSファイル](./images/TT_frame.png)
+
+
 # サンプル
 [サンプル](/samples)内に各種サンプルがあります。
 
@@ -124,6 +144,27 @@ URAさんによりコンテスト第一部用schematicが提供されました�
     - inductorは非常に他のワイヤーからの影響を受けやすいため、安全距離として設けているワイヤーの囲み
 
 
+
+# オプション
+ハンズオンでは使用しませんが、状況により必要となるツール用のセットアップスクリプトです。  
+必要に応じてセットアップしてください。  
+
+## QFlow
+```
+bash eda-qflow-option.sh
+```
+
+
+## Qucs-S
+```
+bash eda-Qucs-S-option.sh
+```
+
+
+## Xyce
+```
+bash eda-xyce-option.sh
+```
 
 
 # ライセンス

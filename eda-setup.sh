@@ -360,6 +360,7 @@ if [ ! -d "$SRC_DIR/ngspice" ]; then
     brew install m4
     export PATH="$(brew --prefix m4)/bin:$PATH"
     export PATH="$(brew --prefix bison)/bin:$PATH"
+    brew link bison --force
     brew install libomp
   elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     OS='Linux'
@@ -381,13 +382,13 @@ if [ ! -d "$SRC_DIR/ngspice" ]; then
 
   if [ "$(uname)" == 'Darwin' ]; then
     OS='Mac'
-    ./configure --disable-debug --with-readline=no --enable-openmp --with-x CXX="g++$CXX_VERSION" CC="gcc$CC_VERSION" CFLAGS="-m64 -O2 -Wno-error=implicit-function-declaration -Wno-error=implicit-int" CPPFLAGS="-I$(brew --prefix freetype2)/include/freetype2/ -I$(brew --prefix libomp)/include/" LDFLAGS="-m64 -s -L$(brew --prefix freetype2)/lib/ -L$(brew --prefix fontconfig)/lib/ -L$(brew --prefix libomp)/lib/ -L/usr/X11/lib/"
+    ./configure --disable-debug --with-readline=no --enable-openmp  --enable-osdi --with-x CXX="g++$CXX_VERSION" CC="gcc$CC_VERSION" CFLAGS="-m64 -O2 -Wno-error=implicit-function-declaration -Wno-error=implicit-int" CPPFLAGS="-I$(brew --prefix freetype2)/include/freetype2/ -I$(brew --prefix libomp)/include/" LDFLAGS="-m64 -s -L$(brew --prefix freetype2)/lib/ -L$(brew --prefix fontconfig)/lib/ -L$(brew --prefix libomp)/lib/ -L/usr/X11/lib/"
     sed -i '' 's/TCGETS/TIOCMGET/g' src/frontend/parser/complete.c
     sed -i '' 's/TCSETS/TIOCMSET/g' src/frontend/parser/complete.c
     sed -i '' 's/LEX = :/LEX = lex/g' src/xspice/cmpp/Makefile
   elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     OS='Linux'
-    ./configure --disable-debug --with-readline=yes --enable-openmp CFLAGS="-m64 -O2" LDFLAGS="-m64 -s" 
+    ./configure --disable-debug --with-readline=yes --enable-openmp --enable-osdi CFLAGS="-m64 -O2" LDFLAGS="-m64 -s" 
   elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then                                                                                           
     OS='Cygwin'
     echo "Your platform ($(uname -a)) is not supported."
@@ -426,9 +427,12 @@ fi
 # -----------------------------------
 if [ "$(uname)" == 'Darwin' ]; then
   OS='Mac'
+  python3 -m pip install ninja pip-autoremove --break-system-packages
   python3 -m pip install gdsfactory pip-autoremove --break-system-packages
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
   OS='Linux'
+  sudo apt install libcurl4-openssl-dev
+  pip install ninja
   pip install gdsfactory
 elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
   OS='Cygwin'
