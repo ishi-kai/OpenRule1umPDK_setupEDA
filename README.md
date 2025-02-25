@@ -34,7 +34,9 @@ macOSは微妙なバージョンの違いによりインストールが失敗す
 また、環境に直接各種ツールやライブラリをインストールするため開発環境への影響を与える可能性があります。それを嫌う場合は、VMWareのイメージを用意してありますので、そちらをお使いください。  
 - [Apple Silicon版OR1(フェニテック、東海理化)用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_OR1.tar.xz)
 - [Apple Silicon版MF20用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_MF20.tar.xz)
-- [Intel版OR1(フェニテック、東海理化)用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_Intel.vmwarevm.tar.xz)
+- [Apple Silicon版iHP用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_iHP130.tar.xz)
+- [Apple Silicon版TinyTapeout用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_TT.tar.xz)
+- [Intel版共通イメージ（PDKは各自でインストールしてください）](https://www.noritsuna.jp/download/ISHI-kai_EDA_Intel.vmwarevm.tar.xz)
 
 
 # xschem
@@ -107,7 +109,7 @@ URAさんによりコンテスト第一部用schematicが提供されました�
 ![フレーム用のGDSファイル](./images/minimalfab_2024_frame.png)
 
 
-## iHPシャトルPDK用
+### iHPシャトルPDK用
 iHPシャトルに用意されているフレームはありません。ボンディングマシンやパッケージの依頼先に合わせて自分で設計する必要があります。  
 
 
