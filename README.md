@@ -23,6 +23,14 @@ WSL2 (Windows Subsystem for Linux)上のUbuntu22.04とUbuntu22.04とmacOSで動�
 PDKを変えたい場合はPDK削除後、PDKのみインストールして下さい。
 
 
+## macOSについて
+macOSは微妙なバージョンの違いによりインストールが失敗することがあります。  
+また、環境に直接各種ツールやライブラリをインストールするため開発環境への影響を与える可能性があります。それを嫌う場合は、VMWareのイメージを用意してありますので、そちらをお使いください。  
+- [Apple Silicon版OR1(フェニテック、東海理化)用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_OR1.tar.xz)
+- [Apple Silicon版MF20用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_MF20.tar.xz)
+- [Intel版OR1(フェニテック、東海理化)用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_Intel.vmwarevm.tar.xz)
+
+
 # xschem
 ## フェニテックシャトルPDK
 ### TEGから求めた抵抗・容量の値(2017/9/23:akita11)
