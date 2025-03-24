@@ -90,13 +90,13 @@ value=10f
 footprint=1206
 device="ceramic capacitor"}
 C {primitives/pfet.sym} 170 -250 0 0 {name=M1 
-model=pchor1ex
+model=pmos
 W=3.3u
 L=1.0u
 m=1
 }
 C {primitives/nfet.sym} 170 -90 0 0 {name=M2 
-model=nchor1ex
+model=nmos
 W=2.0u
 L=1.0u
 m=1

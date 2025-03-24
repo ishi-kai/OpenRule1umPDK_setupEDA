@@ -42,13 +42,13 @@ C {devices/opin.sym} 300 -170 0 0 {name=p2 lab=Q}
 C {devices/iopin.sym} 190 -340 0 1 {name=p3 lab=VDD}
 C {devices/iopin.sym} 190 -10 0 0 {name=p4 lab=VSS}
 C {primitives/pfet.sym} 170 -250 0 0 {name=M1 
-model=pchor1ex
+model=pmos
 W=3.3u
 L=1.0u
 m=1
 }
 C {primitives/nfet.sym} 170 -90 0 0 {name=M2 
-model=nchor1ex
+model=nmos
 W=2.0u
 L=1.0u
 m=1
