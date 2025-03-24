@@ -19,8 +19,8 @@ K {type=nmos
 format="@name @pinlist @model L=@L W=@W m=@m @extra"
 lvs_format="@name @pinlist @model L=@L W=@W m=@m"
 template="name=M1 
-model=nchor1ex
-W=1u
+model=nmos
+W=2u
 L=1u
 m=1
 "}

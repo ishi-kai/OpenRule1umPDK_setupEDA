@@ -1,8 +1,8 @@
 .subckt or21 A B VDD VSS X
-M4 X net068 VDD VDD pchor1ex w=6u l=1u
-M3 N001 B VDD VDD pchor1ex w=6u l=1u
-M2 net068 A N001 VDD pchor1ex w=6u l=1u
-M5 X net068 VSS VSS nchor1ex w=2u l=1u
-M1 net068 A VSS VSS nchor1ex w=2u l=1u
-M0 net068 B VSS VSS nchor1ex w=2u l=1u
+M4 X net068 VDD VDD pmos w=6u l=1u
+M3 N001 B VDD VDD pmos w=6u l=1u
+M2 net068 A N001 VDD pmos w=6u l=1u
+M5 X net068 VSS VSS nmos w=2u l=1u
+M1 net068 A VSS VSS nmos w=2u l=1u
+M0 net068 B VSS VSS nmos w=2u l=1u
 .ends or21

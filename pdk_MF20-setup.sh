@@ -32,7 +32,7 @@ export SRC_DIR="$HOME/src"
 my_path=$(realpath "$0")
 my_dir=$(dirname "$my_path")
 export SCRIPT_DIR="$my_dir"
-export KLAYOUT_VERSION=0.29.7
+export KLAYOUT_VERSION=0.29.10
 
 # for Mac
 if [ "$(uname)" == 'Darwin' ]; then

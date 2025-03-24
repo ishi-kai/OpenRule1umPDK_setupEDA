@@ -19,8 +19,8 @@ K {type=pmos
 format="@name @pinlist @model L=@L W=@W m=@m @extra"
 lvs_format="@name @pinlist @model L=@L W=@W m=@m"
 template="name=M1 
-model=pchor1ex
-W=2u
+model=pmos
+W=6u
 L=1u
 m=1
 "}
