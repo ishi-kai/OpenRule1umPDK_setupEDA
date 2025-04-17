@@ -288,6 +288,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     git clone --depth 1 https://github.com/KLayout/klayout.git "$SRC_DIR/klayout"
     cd "$SRC_DIR/klayout"
     ./build.sh
+    rm -fr $HOME/bin/klayout
+    mv $SRC_DIR/klayout/bin-release/ $HOME/bin/klayout/
+    echo 'export PATH="$HOME/bin/klayout/:$PATH"' >> ~/.bashrc
+    echo 'export LD_LIBRARY_PATH="$HOME/bin/klayout/:$LD_LIBRARY_PATH"' >> ~/.bashrc
   fi
 elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
   OS='Cygwin'
