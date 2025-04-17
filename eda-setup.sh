@@ -277,10 +277,18 @@ if [ "$(uname)" == 'Darwin' ]; then
   chmod +x $HOME/bin/klayout.sh
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
   OS='Linux'
-  wget https://www.klayout.org/downloads/Ubuntu-22/klayout_$KLAYOUT_VERSION-1_amd64.deb
-  sudo apt -qq install -y ./klayout_$KLAYOUT_VERSION-1_amd64.deb
-  rm klayout_$KLAYOUT_VERSION-1_amd64.deb
   pip install docopt pandas pip-autoremove
+  if [ "$(expr substr $(arch) 1 6)" == 'x86_64' ]; then
+    wget https://www.klayout.org/downloads/Ubuntu-22/klayout_$KLAYOUT_VERSION-1_amd64.deb
+    sudo apt -qq install -y ./klayout_$KLAYOUT_VERSION-1_amd64.deb
+    rm klayout_$KLAYOUT_VERSION-1_amd64.deb
+  elif [ "$(expr substr $(arch) 1 7)" == 'aarch64' ]; then
+    sudo apt -qq install -y qtbase5-dev qttools5-dev libqt5xmlpatterns5-dev qtmultimedia5-dev libqt5multimediawidgets5 libqt5svg5-dev ruby-dev libgit2-dev
+    cd $SRC_DIR
+    git clone --depth 1 https://github.com/KLayout/klayout.git "$SRC_DIR/klayout"
+    cd "$SRC_DIR/klayout"
+    ./build.sh
+  fi
 elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
   OS='Cygwin'
   echo "Your platform ($(uname -a)) is not supported."
