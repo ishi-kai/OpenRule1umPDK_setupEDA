@@ -129,7 +129,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
   wget https://xyce.sandia.gov/files/xyce/Xyce-7.9.tar.gz
   tar zxfv Xyce-7.9.tar.gz
   cd Xyce-7.9
-  cp $my_path/xyce/reconfigure_xyce.sh .
+  cp $my_dir/xyce/reconfigure_xyce.sh .
   bash reconfigure_xyce.sh
   make
   sudo make install
