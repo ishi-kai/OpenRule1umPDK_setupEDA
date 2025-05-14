@@ -122,7 +122,7 @@ else
   echo "Your platform ($(uname -a)) is not supported."
   exit 1
 fi
-python3 -m pip install --upgrade --no-cache-dir volare
+python3 -m pip install --upgrade --no-cache-dir volare --break-system-packages
 
 
 # Install/update xschem
