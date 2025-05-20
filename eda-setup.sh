@@ -225,13 +225,14 @@ if [ ! -d "$SRC_DIR/xschem-gaw" ]; then
   cd "$SRC_DIR/xschem-gaw" || exit
   aclocal && automake --add-missing && autoconf
 #  export GETTEXT_VERSION=`gettext --version | awk 'NR==1{print $4}'`
-  export GETTEXT_VERSION=0.22
   if [ "$(uname)" == 'Darwin' ]; then
     OS='Mac'
+    export GETTEXT_VERSION=0.22
     sed -i '' "s/GETTEXT_MACRO_VERSION = 0.18/GETTEXT_MACRO_VERSION = $GETTEXT_VERSION/g" po/Makefile.in.in
     ./configure --enable-gawsound=no LDFLAGS="-L/usr/X11/lib"
   elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     OS='Linux'
+    export GETTEXT_VERSION=0.20
     sed -i "s/GETTEXT_MACRO_VERSION = 0.18/GETTEXT_MACRO_VERSION = $GETTEXT_VERSION/g" po/Makefile.in.in
     ./configure
   fi
