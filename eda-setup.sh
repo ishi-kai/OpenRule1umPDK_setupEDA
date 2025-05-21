@@ -196,7 +196,8 @@ if [ ! -d "$SRC_DIR/xschem-gaw" ]; then
     brew install automake
     brew install autoconf
     brew install gtk+3
-    gettextize -f
+    brew install m4
+    export PATH="$(brew --prefix m4)/bin:$PATH"
 
     cd $SRC_DIR
     wget https://download.gnome.org/sources/gtk+/3.24/gtk%2B-$GTK_VERSION.tar.xz
@@ -223,16 +224,19 @@ if [ ! -d "$SRC_DIR/xschem-gaw" ]; then
   fi
   git clone https://github.com/StefanSchippers/xschem-gaw.git "$SRC_DIR/xschem-gaw"
   cd "$SRC_DIR/xschem-gaw" || exit
-  aclocal && automake --add-missing && autoconf
+  export GETTEXT_VERSION=0.20
 #  export GETTEXT_VERSION=`gettext --version | awk 'NR==1{print $4}'`
   if [ "$(uname)" == 'Darwin' ]; then
     OS='Mac'
     export GETTEXT_VERSION=0.22
+    gettextize -f
+    aclocal -I m4 && automake --add-missing && autoconf
     sed -i '' "s/GETTEXT_MACRO_VERSION = 0.18/GETTEXT_MACRO_VERSION = $GETTEXT_VERSION/g" po/Makefile.in.in
+    sed -i '' "s/linux/netinet/g" lib/sockcon.c
     ./configure --enable-gawsound=no LDFLAGS="-L/usr/X11/lib"
   elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     OS='Linux'
-    export GETTEXT_VERSION=0.20
+    aclocal && automake --add-missing && autoconf
     sed -i "s/GETTEXT_MACRO_VERSION = 0.18/GETTEXT_MACRO_VERSION = $GETTEXT_VERSION/g" po/Makefile.in.in
     ./configure
   fi
@@ -240,6 +244,10 @@ else
   echo ">>>> Updating gaw"
   cd "$SRC_DIR/xschem-gaw" || exit
   git pull
+  if [ "$(uname)" == 'Darwin' ]; then
+    OS='Mac'
+    export PATH="$(brew --prefix m4)/bin:$PATH"
+  fi
 fi
 make clean
 make -j"$(nproc)" && sudo make install
@@ -370,8 +378,6 @@ if [ ! -d "$SRC_DIR/ngspice" ]; then
     brew install flex
     brew install lex
     brew install fontconfig
-    brew install m4
-    export PATH="$(brew --prefix m4)/bin:$PATH"
     export PATH="$(brew --prefix bison)/bin:$PATH"
     brew link bison --force
     brew install libomp
@@ -416,7 +422,6 @@ else
   git pull
   if [ "$(uname)" == 'Darwin' ]; then
     OS='Mac'
-    export PATH="$(brew --prefix m4)/bin:$PATH"
     export PATH="$(brew --prefix bison)/bin:$PATH"
   fi
 fi
