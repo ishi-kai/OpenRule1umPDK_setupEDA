@@ -17,7 +17,7 @@ v {xschem version=3.4.5 file_version=1.2
 G {}
 K {type=poly_resistor
 format="@name @pinlist @model W=@W L=@L"
-template="name=R1 model=R_poly W=1.8 L=45"}
+template="name=R1 model=HR_poly W=1.8 L=45"}
 V {}
 S {}
 E {}
