@@ -93,6 +93,11 @@ else
   fi
   cp -aR ./* $HOME/.klayout/salt/OpenRule1um/
 fi
+cd $my_dir
+rm $HOME/.klayout/salt/OpenRule1um/tech/tech/lvs/lvs.lylvs
+cp ./klayout/lvs/or1_lvs.* $HOME/.klayout/salt/OpenRule1um/tech/tech/lvs/
+cp ./klayout/macros/get_reference.lym $HOME/.klayout/salt/OpenRule1um/tech/tech/macros/
+
 if [ ! -d "$SRC_DIR/AnagixLoader" ]; then
   cd $SRC_DIR
   git clone  https://github.com/mineda-support/AnagixLoader.git
