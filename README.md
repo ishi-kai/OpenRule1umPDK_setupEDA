@@ -8,26 +8,29 @@ WSL2 (Windows Subsystem for Linux)上のUbuntu22.04とUbuntu22.04とmacOSで動�
 ## 共通コマンド
 `bash eda-setup.sh`
 
-## フェニテックシャトルPDKの場合
+## PDKのインストール
+シャトルに合わせたPDKのインストールが必要です。シャトルに合わせたPDKを**一つだけ**選んでインストールしてください。  
+PDKを変更する場合は、一度削除してから再度インストールしてください。  
+
+### フェニテックシャトルPDKの場合
 `bash pdk_PTC06-setup.sh`
 
-## 東海理化シャトルPDKの場合
+### 東海理化シャトルPDKの場合
 `bash pdk_TR10-setup.sh`
 
-## ミニマルファブPDKの場合
+### ミニマルファブPDKの場合
 `bash pdk_MF20-setup.sh`
 
-## iHPシャトルPDKの場合
+### iHPシャトルPDKの場合
 `bash pdk_ihp-sg13g2-setup.sh`
 
-## TinyTapeout PDKの場合
+### TinyTapeout PDKの場合
 `bash pdk_sky130-setup.sh`
 
 ## PDKの削除
 `bash uninstall.sh`
 
 PDKを変えたい場合はPDK削除後、PDKのみインストールして下さい。
-
 
 ## macOSについて
 macOSは微妙なバージョンの違いによりインストールが失敗することがあります。  
@@ -36,7 +39,23 @@ macOSは微妙なバージョンの違いによりインストールが失敗す
 - [Apple Silicon版MF20用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_MF20.tar.xz)
 - [Apple Silicon版iHP用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_iHP130.tar.xz)
 - [Apple Silicon版TinyTapeout用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_TT.tar.xz)
-- [Intel版共通イメージ（PDKは各自でインストールしてください）](https://www.noritsuna.jp/download/ISHI-kai_EDA_Intel.vmwarevm.tar.xz)
+- [Intel版共通イメージ OR1(フェニテック、東海理化)用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_Intel.vmwarevm.tar.xz)
+
+## WSLイメージ
+WSLの環境によってはインストールすることができないことありますので、WSL用のイメージも用意しました。  
+
+- [WSL版OR1(フェニテック、東海理化)用イメージ](https://www.noritsuna.jp/download/ubuntu2204_ishi-kai_EDA.WSL.tar.xz)
+
+### WSLイメージのインストール
+下記のコマンドにて認識されます。実行には「ubuntu2204_ishi-kai_EDA.lnk」を利用してください。  
+
+`wsl --import-in-place ubuntu2204_ishi-kai_EDA .\ubuntu2204_ishi-kai_EDA\ext4.vhdx`
+
+
+### WSLイメージの削除
+イメージファイルも削除されてしまうので、注意してください。  
+
+`wsl --unregister ubuntu2204_ishi-kai_EDA`
 
 
 # xschem
