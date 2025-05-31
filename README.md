@@ -40,21 +40,20 @@ macOSは微妙なバージョンの違いによりインストールが失敗す
 - [Apple Silicon版iHP用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_iHP130.tar.xz)
 - [Apple Silicon版TinyTapeout用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_TT.tar.xz)
 - [Intel版共通イメージ OR1(フェニテック、東海理化)用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_Intel.vmwarevm.tar.xz)
-
--- ID: ishi-kai
--- Pass: ishi-kai
+    - ID: ishi-kai
+    - Pass: ishi-kai
 
 ## WSLイメージ
 WSLの環境によってはインストールすることができないことありますので、WSL用のイメージも用意しました。  
 
 - [WSL版OR1(フェニテック、東海理化)用イメージ](https://www.noritsuna.jp/download/ubuntu2204_ishi-kai_EDA.WSL.tar.xz)
--- ID: ishi-kai
--- Pass: ishi-kai
+    - ID: ishi-kai
+    - Pass: ishi-kai
 
 ### WSLイメージのインストール
-下記のコマンドにて認識されます。実行には「ubuntu2204_ishi-kai_EDA.lnk」を利用してください。  
-
 `wsl --import-in-place ubuntu2204_ishi-kai_EDA .\ubuntu2204_ishi-kai_EDA\ext4.vhdx`
+
+上記のコマンドにて認識されます。実行には同梱されている「ubuntu2204_ishi-kai_EDA.lnk」を利用してください。  
 
 
 ### WSLイメージの削除
