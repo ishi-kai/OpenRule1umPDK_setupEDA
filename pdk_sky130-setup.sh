@@ -13,7 +13,7 @@ my_path=$(realpath "$0")
 my_dir=$(dirname "$my_path")
 export SCRIPT_DIR="$my_dir"
 export PDK=sky130A
-export VOLARE_H=0fe599b2afb6708d281543108caf8310912f54af
+export VOLARE_H=6d4d11780c40b20ee63cc98e645307a9bf2b2ab8
 
 # for Mac
 if [ "$(uname)" == 'Darwin' ]; then
