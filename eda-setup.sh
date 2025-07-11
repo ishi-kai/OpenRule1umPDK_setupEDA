@@ -32,7 +32,7 @@ export SRC_DIR="$HOME/src"
 my_path=$(realpath "$0")
 my_dir=$(dirname "$my_path")
 export SCRIPT_DIR="$my_dir"
-export KLAYOUT_VERSION=0.30.0
+export KLAYOUT_VERSION=0.30.2
 
 # for Mac
 if [ "$(uname)" == 'Darwin' ]; then
@@ -79,6 +79,15 @@ if [ "$(uname)" == 'Darwin' ]; then
   brew upgrade
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
   OS='Linux'
+  . /etc/os-release
+  if [ "$(expr substr $VERSION_ID 1 5)" == '22.04' ]; then
+    echo "Your platform is Ubuntu $VERSION_ID."
+  elif [ "$(expr substr $VERSION_ID 1 5)" == '24.04' ]; then
+    echo "Your platform is Ubuntu $VERSION_ID."
+  else
+    echo "Your platform Ubuntu $VERSION_ID is not supported."
+    exit 1
+  fi
   sudo sed -i 's/# deb-src/deb-src/g' /etc/apt/sources.list
   sudo apt -qq update -y
   sudo apt -qq upgrade -y
@@ -123,6 +132,8 @@ else
   exit 1
 fi
 python3 -m pip install --upgrade --no-cache-dir volare --break-system-packages
+
+
 
 
 # Install/update xschem
@@ -286,9 +297,16 @@ if [ "$(uname)" == 'Darwin' ]; then
   chmod +x $HOME/bin/klayout.sh
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
   OS='Linux'
-  pip install docopt pandas pip-autoremove
+  pip install docopt pandas pip-autoremove --break-system-packages
   if [ "$(expr substr $(arch) 1 6)" == 'x86_64' ]; then
-    wget https://www.klayout.org/downloads/Ubuntu-22/klayout_$KLAYOUT_VERSION-1_amd64.deb
+    if [ "$(expr substr $VERSION_ID 1 5)" == '22.04' ]; then
+      wget https://www.klayout.org/downloads/Ubuntu-22/klayout_$KLAYOUT_VERSION-1_amd64.deb
+    elif [ "$(expr substr $VERSION_ID 1 5)" == '24.04' ]; then
+      wget https://www.klayout.org/downloads/Ubuntu-24/klayout_$KLAYOUT_VERSION-1_amd64.deb
+    else
+      echo "Your platform Ubuntu $VERSION_ID is not supported."
+      exit 1
+    fi
     sudo apt -qq install -y ./klayout_$KLAYOUT_VERSION-1_amd64.deb
     rm klayout_$KLAYOUT_VERSION-1_amd64.deb
   elif [ "$(expr substr $(arch) 1 7)" == 'aarch64' ]; then
@@ -436,8 +454,16 @@ if [ "$(uname)" == 'Darwin' ]; then
   OS='Mac'
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
   OS='Linux'
-  sudo apt -qq install -y gnome-terminal
-  systemctl --user start gnome-terminal-server
+  if [ "$(expr substr $VERSION_ID 1 5)" == '22.04' ]; then
+    sudo apt -qq install -y gnome-terminal
+    systemctl --user start gnome-terminal-server
+  elif [ "$(expr substr $VERSION_ID 1 5)" == '24.04' ]; then
+    echo "gnome-terminal-server is not supported."
+  else
+    echo "Your platform Ubuntu $VERSION_ID is not supported."
+    exit 1
+  fi
+
 fi
 
 
@@ -450,8 +476,8 @@ if [ "$(uname)" == 'Darwin' ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
   OS='Linux'
   sudo apt install libcurl4-openssl-dev
-  pip install ninja
-  pip install gdsfactory
+  pip install ninja --break-system-packages
+  pip install gdsfactory --break-system-packages
 elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
   OS='Cygwin'
   echo "Your platform ($(uname -a)) is not supported."
