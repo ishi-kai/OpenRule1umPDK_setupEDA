@@ -15,25 +15,75 @@
 #### XSCHEM SYSTEM-WIDE DESIGN LIBRARY PATHS: XSCHEM_LIBRARY_PATH
 ###########################################################################
 #### If unset xschem starts with XSCHEM_LIBRARY_PATH set to the default, typically:
-# /home/schippes/.xschem/xschem_library
-# /home/schippes/share/xschem/xschem_library/devices
-# /home/schippes/share/doc/xschem/examples
-# /home/schippes/share/doc/xschem/ngspice
-# /home/schippes/share/doc/xschem/logic
-# /home/schippes/share/doc/xschem/xschem_simulator
-# /home/schippes/share/doc/xschem/binto7seg
-# /home/schippes/share/doc/xschem/pcb
-# /home/schippes/share/doc/xschem/rom8k
+#### <install_root>/.xschem/xschem_library
+#### <install_root>/share/xschem/xschem_library/devices
+#### <install_root>/share/doc/xschem/examples
+#### <install_root>/share/doc/xschem/ngspice
+#### <install_root>/share/doc/xschem/ngspice_verilog_cosim
+#### <install_root>/share/doc/xschem/logic
+#### <install_root>/share/doc/xschem/xschem_simulator
+#### <install_root>/share/doc/xschem/generators
+#### <install_root>/share/doc/xschem/inst_sch_select
+#### <install_root>/share/doc/xschem/binto7seg
+#### <install_root>/share/doc/xschem/pcb
+#### <install_root>/share/doc/xschem/rom8k
 
-#### Flush any previous definition
-set XSCHEM_LIBRARY_PATH {}
-#### include devices/*.sym
-append XSCHEM_LIBRARY_PATH ${XSCHEM_SHAREDIR}/xschem_library
-#### include skywater libraries. Here i use [pwd]. This works if i start xschem from here.
-append XSCHEM_LIBRARY_PATH :$env(PWD)
-# append XSCHEM_LIBRARY_PATH :/mnt/sda7/home/schippes/pdks/sky130A/libs.tech/xschem
-#### add ~/.xschem/xschem_library (USER_CONF_DIR is normally ~/.xschem)
-append XSCHEM_LIBRARY_PATH :$USER_CONF_DIR/xschem_library 
+#### For testing in build src directory
+#### if unset following paths are set and maintained if existing:
+#### ~/.xschem/xschem_library
+#### ../xschem_library/devices
+#### ../xschem_library/examples
+#### ../xschem_library/ngspice
+#### ../xschem_library/ngspice_verilog_cosim
+#### ../xschem_library/logic
+#### ../xschem_library/xschem_simulator
+#### ../xschem_library/generators
+#### ../xschem_library/inst_sch_select
+#### ../xschem_library/binto7seg
+#### ../xschem_library/pcb
+#### ../xschem_library/rom8k
+
+#### For testing after installation: uncomment following lines
+# set xschem_doc_dir [file dirname ${XSCHEM_SHAREDIR}]/doc/xschem
+# set XSCHEM_LIBRARY_PATH {}
+# append XSCHEM_LIBRARY_PATH :~/.xschem/xschem_library
+# append XSCHEM_LIBRARY_PATH :${XSCHEM_SHAREDIR}/xschem_library/devices
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/examples
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/ngspice
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/ngspice_verilog_cosim
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/logic
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/xschem_simulator
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/generators
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/inst_sch_select
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/binto7seg
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/pcb
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/rom8k
+#### Optional, often not needed...
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/symgen
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/xTAG
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/rulz-r8c33
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/gschem_import
+# append XSCHEM_LIBRARY_PATH :${xschem_doc_dir}/gschem_import/sym
+
+#### For Windows, use ; instead of :, and enclosed pathname with ""
+# append XSCHEM_LIBRARY_PATH ";${XSCHEM_SHAREDIR}/xschem_library"
+# append XSCHEM_LIBRARY_PATH ";${XSCHEM_SHAREDIR}/xschem_library/devices"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/examples"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/ngspice"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/ngspice_verilog_cosim"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/logic"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/xschem_simulator"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/generators"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/inst_sch_select"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/binto7seg"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/pcb"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/rom8k"
+#### Optional, often not needed...
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/symgen"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/xTAG"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/rulz-r8c33"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/gschem_import"
+# append XSCHEM_LIBRARY_PATH ";${xschem_doc_dir}/gschem_import/sym"
 
 ###########################################################################
 #### SET CUSTOM COLORS FOR XSCHEM LIBRARIES MATCHING CERTAIN PATTERNS
@@ -41,12 +91,9 @@ append XSCHEM_LIBRARY_PATH :$USER_CONF_DIR/xschem_library
 #### each line contains a dircolor(pattern) followed by a color
 #### color can be an ordinary name (grey, brown, blue) or a hex code {#77aaff}
 #### hex code must be enclosed in braces
-array unset dircolor
-set dircolor(OR1$) green
-set dircolor(primitives$) green
-set dircolor(stdcells$) green
-set dircolor(xschem_library$) red
-set dircolor(devices$) red
+#### these are the defaults:
+# set dircolor(/share/xschem/) red
+# set dircolor(/share/doc/xschem/) {#338844}
 
 ###########################################################################
 #### WINDOW TO OPEN ON STARTUP: XSCHEM_START_WINDOW
@@ -54,13 +101,20 @@ set dircolor(devices$) red
 #### Start without a design if no filename given on command line:
 #### To avoid absolute paths, use a path that is relative to one of the
 #### XSCHEM_LIBRARY_PATH directories. Default: empty
-set XSCHEM_START_WINDOW $env(HOME)/.xschem/title_TR10.sch
+# set XSCHEM_START_WINDOW {0_examples_top.sch}
 
 ###########################################################################
 #### DIRECTORY WHERE SIMULATIONS, NETLIST AND SIMULATOR OUTPUTS ARE PLACED
 ###########################################################################
 #### If unset $USER_CONF_DIR/simulations is assumed (normally ~/.xschem/simulations) 
 # set netlist_dir $env(HOME)/.xschem/simulations
+
+#### if this is set to '1' netlists and simulations will go into a simulation/ folder
+#### inside the directory containing the top level schematic.
+#### if this is set to '2' netlists and simulations will go into a simulation/[schname]/ folder
+#### inside the directory containing the top level schematic.
+#### Default: not set (0).
+# set local_netlist_dir 1
 
 ###########################################################################
 #### NETLIST AND HIERARCHICAL PRINT EXCLUDE PATTERNS
@@ -77,6 +131,11 @@ set XSCHEM_START_WINDOW $env(HOME)/.xschem/title_TR10.sch
 #### variable controls hierarchical print
 #### default value: empty
 # set noprint_libs {}
+#### nolist_libs is a list with same rules as for xschem_libs. This
+#### variable controls cell listing in procedure list_hierarchy.
+#### default value: empty
+# set nolist_libs {}
+
 
 ###########################################################################
 #### CHANGE DEFAULT [] WITH SOME OTHER CHARACTERS FOR BUSSED SIGNALS 
@@ -94,7 +153,6 @@ set XSCHEM_START_WINDOW $env(HOME)/.xschem/title_TR10.sch
 # set netlist_type spice
 
 #### Some netlisting options (these are the defaults)
-# set hspice_netlist 1
 # set verilog_2001 1
 
 #### to use a fixed line with set change_lw to 0 and set some value to line_width
@@ -105,14 +163,38 @@ set XSCHEM_START_WINDOW $env(HOME)/.xschem/title_TR10.sch
 #### allow color postscript and svg exports. Default: 1, enable color
 # set color_ps 1
 
+#### add a page title in the top left corner of the ps/pdf page. Default: enabled (1)
+# set ps_page_title 1
+
+#### set paper size: name, height, width. Sizes in 1/72 of an inch (typographical points)
+#### default: {a4 842 595}
+# set ps_paper_size {a4 842 595}
+# set ps_paper_size {letter 792 612}
+
 #### initial size of xschem window you can specify also position with (wxh+x+y)
 #### this is the default:
 # set initial_geometry {900x600}
+
+#### initial size of the load_file_dialog (the file selector) dialog box
+# set file_dialog_default_geometry 700x680+100+40
+#### load_file_dialog directory list (+ recent if shown) X width in pixels
+# set file_dialog_sp0 350
+#### load_file_dialog recent components list X width in pixels
+# set file_dialog_sp1 100
+#### load_file_dialog components list Y height in pixels
+# set file_dialog_v_sp0 420
+
+#### display full path (1) or only name (0) for component directories. Default: 1
+# set load_file_dialog_fullpath 1
 
 #### if set to 0, when zooming out allow the viewport do drift toward the mouse position,
 #### allowing to move away by zooming / unzooming with mouse wheel
 #### default setting: 0
 # set unzoom_nodrift 0
+
+#### if set to 1 full zoom will center the drawing instead of anhoring to lower
+#### left corner. Default: 0
+# set zoom_full_center 1
 
 #### if set to 1 allow to place multiple components with same name.
 #### Warning: this is normally not allowed in any simulation netlist.
@@ -123,24 +205,146 @@ set XSCHEM_START_WINDOW $env(HOME)/.xschem/title_TR10.sch
 #### default: 0
 # set persistent_command 1
 
-#### if set to 1 a wire is inserted when separating components that are
-#### connected by pins. Default: not enabled (0)
-# set connect_by_kissing 1
+#### if set to 0 users must click a point after hitting a command key
+#### like 'w(ire)', 'l(ine)' and so on.
+#### default is 1 (hitting the command key sets also the first point).
+# set infix_interface 0
+
+#### if set to 1 allow click & drag objects in the schematic 
+#### to move them without keyboard commands ('m')
+#### default: enabled (1)
+# set intuitive_interface 0
+
+
+#### if set to 1 at end of a move operation that stretches wires attached to
+#### moved objects these wires will be unselected.
+#### default: not enabled (0)
+# set unselect_partial_sel_wires 0
+
+#### if set select objects if touched by selection rectangle while dragging to the left
+#### Default: enabled (1)
+# set select_touch 0
+
+#### if set show selected elements while dragging the selection rectangle.
+#### once selected these can not be unselected by retracting the selection rectangle
+#### if not set show selected items at end of drag. Default: enabled (1)
+# set incremental_select 0
+
+#### wires are drawn in free-form mode with this mode disabled (default).
+#### if set to 1, wires drawn on the schematic will strictly follow
+#### orthogonal routes to connect two distinct points together.
+#### default: 0
+# set orthogonal_wiring 1
 
 #### if set to 1 automatically join/trim wires while editing
 #### this may slow down on rally big designs. Can be disabled via menu 
 #### default: 0
 # set autotrim_wires 0
 
+#### do not ask to save file when doing control-s or File -> Save
+#### default: disabled (0), will ask before saving.
+# set no_ask_save 0
+
 #### set widget scaling (mainly for font display), this is useful on 4K displays
 #### default: unset (tk uses its default) > 1.0 ==> bigger 
 # set tk_scaling 1.7
 
+#### toolbar icons are bitmaps. Their size is 24x24. This can be changed to
+#### accommodate UHD displays.
+#### the zoom factor is an integer that can be used to enlarge these icons
+#### Default value: 1
+# set toolbar_icon_zoom 2
+#### context menu icons are 16 x 16. they can be enlarged by the following
+#### integer. default value: 1
+# set ctxmenu_icon_zoom 2
+
+#### use the tclreadline package if available , Default: 1 (enabled).
+# set use_tclreadline 1
+
+#### use the dark color scheme (default: 1)
+# set dark_colorscheme 1
+
+#### use the dark color scheme for GUI widgets (default: 0)
+#### *** This can not be changed after xschem startup ***
+# set dark_gui_colorscheme 0
+
 #### disable some symbol layers. Default: none, all layers are visible.
 # set enable_layer(5) 0 ;# example to disable pin red boxes
 
+#### enable drawing the grid. Default: enabled (1)
+# set draw_grid 1
+
+#### auto highlight nodes shown in graphs: default: not enabled (0)
+# set auto_hilight_graph_nodes 0
+
+#### enable stretch mode: when dragging a selection rectangle that cuts wires these are stretched
+#### to follow the selected objects when moved. Default: not enabled (0).
+#### This can be normally done by dragging with the Control key pressed.
+#### Enabling this option swaps the two drag modes.
+# set enable_stretch 0
+
+#### enable drawing crosshairs at mouse coordinates. Default: disabled (0)
+# set draw_crosshair 1
+
+#### set crosshair layer; Default 8 (Yellow)
+# set crosshair_layer 8
+
+#### set crosshair size; Default: 0 (full screen spanning crosshair) 
+# set crosshair_size 2
+
+#### enable drawing a diamond-shaped cursor at the closest circuit endpoint. Default: disabled (0)
+# set snap_cursor 1
+
+#### set snap_cursor_size; Default: 6 (Diamond-shaped cursor that snaps to nearest circuit endpoint)
+# set snap_cursor_size 6
+
+#### set cadence_compat; Default: 0 (Cadence-style keybinds are not used by default)
+# set cadence_compat 1
+
+#### if set, then, when cursor (regardless of style) is on an object, and user clicks (though mouse pointer is not on the object),
+#### the object is selected. Default: 0
+# set use_cursor_for_selection 1
+
 #### enable to scale grid point size as done with lines at close zoom, default: 0
 # set big_grid_points 0
+
+#### explicitly set grid point size in pixels. Default: -1 (not set)
+# set grid_point_size 2
+
+#### enable drawing grid axes. Default: enabled (1)
+# set draw_grid_axes 1
+
+#### enable grouping contiguous bits of bus slices in net->pin instance
+#### assignments for verilog netlists. Default: disabled (0)
+# set verilog_bitblast 0
+
+#### allow searching the full search path for schematics associated to symbols
+#### instead of looking only in symbol directory. Default: disabled (0).
+# set search_schematic 0
+
+#### keep symbols encountered while netlisting / descending the hierarchy.
+#### Default: not enabled (0)
+# set keep_symbols 0
+
+#### focus the schematic window if mouse goes over it, even if a dialog box
+#### is displayed, without needing to click.
+#### This allows to move/zoom/pan the schematic while editing attributes.
+#### Clicking in the schematic window usually closes the dialog box or starts
+#### editing a new component if clicking on a new component.
+#### default: NOT enabled (0)
+# set autofocus_mainwindow 1
+
+#### replace selected text in text widgets when pasting from clipboard
+#### default: enabled (1)
+# set text_replace_selection 0
+
+#### set component browser always above drawing canvas.
+#### default: enabled (1)
+# set component_browser_on_top 0
+
+#### set graph line width multiplier with respect to xschem actual line width
+#### default: 2.0
+# set graph_linewidth_mult 4.0
 
 ###########################################################################
 #### EXPORT FORMAT TRANSLATORS, PNG AND PDF
@@ -148,13 +352,27 @@ set XSCHEM_START_WINDOW $env(HOME)/.xschem/title_TR10.sch
 #### command to translate xpm to png; (assumes command takes source 
 #### and dest file as arguments, example: gm convert plot.xpm plot.png)
 #### default: {gm convert}
+#### Windows ghostscript uses gswin64c
+# set to_png {gswin64c -sDEVICE=png16m -o}
 # set to_png {gm convert}
 
 #### command to translate ps to pdf; (assumes command takes source
 #### and dest file as arguments, example: ps2pdf plot.ps plot.pdf)
 #### default: ps2pdf
+#### Windows ghostscript uses gswin64c
+# set to_pdf {gswin64c -sDEVICE=pdfwrite -o}
 # set to_pdf ps2pdf
-set to_pdf {ps2pdf -dAutoRotatePages=/None}
+# set to_pdf {ps2pdf -dAutoRotatePages=/None}
+
+###########################################################################
+#### IMPORT SVG IMAGES
+###########################################################################
+#### this is a filter command that processes svg files and writes png data
+#### listed in my personal order of preference.
+#### filter must read stdin and write to stdout.
+# set svg_to_png {rsvg-convert}
+# set svg_to_png {inkscape --pipe --export-type=png --export-filename=-}
+# set svg_to_png {convert - png:-}
 
 ###########################################################################
 #### UNDO: SAVE ON DISK OR KEEP IN MEMORY
@@ -173,8 +391,8 @@ set to_pdf {ps2pdf -dAutoRotatePages=/None}
 ###########################################################################
 #### Warning: changing these values will likely break compatibility
 #### with existing symbol libraries. Defaults: grid 20, snap 10.
-# set grid 20
-# set snap 10
+# set cadgrid 20
+# set cadsnap 10
 
 ###########################################################################
 #### CUSTOM COLORS  MAY BE DEFINED HERE
@@ -193,6 +411,25 @@ set to_pdf {ps2pdf -dAutoRotatePages=/None}
 #   "#ff00ff" "#00ff00" "#0000cc" "#aaaa00" "#aaccaa"
 #   "#ff7777" "#bfff81" "#00ffcc" "#ce0097" "#d2d46b"
 #   "#ef6158" "#fdb200" }
+
+###########################################################################
+#### CUSTOM FILL PATTERNS  MAY BE DEFINED HERE
+###########################################################################
+#### every 0x#### hex data represents one 16 bit row of the 16x16 bit fill bitmap
+#### of the specified layer number.
+#### following examples set a checkerboard fill pattern
+#### for symbol shape drawing layer (layer 4)
+#### and for pin layer (layer 5)
+#
+# set pixdata(4) {
+#   0x8888 0x0000 0x0000 0x0000 0x2222 0x0000 0x0000 0x0000
+#   0x8888 0x0000 0x0000 0x0000 0x2222 0x0000 0x0000 0x0000
+# }
+
+# set pixdata(5) {
+#   0x5555 0xaaaa 0x5555 0xaaaa 0x5555 0xaaaa 0x5555 0xaaaa
+#   0x5555 0xaaaa 0x5555 0xaaaa 0x5555 0xaaaa 0x5555 0xaaaa
+# }
 
 ###########################################################################
 #### CAIRO STUFF
@@ -222,12 +459,12 @@ set to_pdf {ps2pdf -dAutoRotatePages=/None}
 #### KEYBINDINGS
 ###########################################################################
 #### General format for specifying a replacement for a keybind
-#### Replace Ctrl-d with Escape (so you wont kill the program)
-# set replace_key(Control-d) Escape
+#### Replace Ctrl-q with Escape (so you wont kill the program)
+# set replace_key(Control-q) Escape
 
 #### swap w and W keybinds; Always specify Shift for capital letters
-# set replace_key(Shift-W) w
-# set replace_key(w) Shift-W
+# set replace_key(Shift-W) Key-w
+# set replace_key(Key-w) Shift-W
 
 ###########################################################################
 #### TERMINAL
@@ -246,6 +483,7 @@ set to_pdf {ps2pdf -dAutoRotatePages=/None}
 # set editor {gvim -f -geometry 90x28}
 # set editor { xterm -geometry 100x40 -e nano }
 # set editor { xterm -geometry 100x40 -e pico }
+# set editor {gedit -w}
 
 #### For Windows
 # set editor {notepad.exe}
@@ -257,12 +495,11 @@ set to_pdf {ps2pdf -dAutoRotatePages=/None}
 # set show_infowindow 0
 
 ###########################################################################
-#### CONFIGURE COMPUTER FARM JOB REDIRECTORS FOR SIMULATIONS
+#### SHOW ERC INFO WINDOW AFTER NETLIST
 ###########################################################################
-#### RTDA NC
-# set computerfarm {nc run -Il}
-#### LSF BSUB
-# set computerfarm {bsub -Is}
+#### allowed values: never onerror always
+#### default: onerror
+# set show_infowindow_after_netlist onerror
 
 ###########################################################################
 #### TCP CONNECTION WITH GAW
@@ -281,35 +518,217 @@ set to_pdf {ps2pdf -dAutoRotatePages=/None}
 #### BESPICE WAVE SOCKET CONNECTION
 ###########################################################################
 #### set bespice wave listening port; default: not enabled
-set bespice_listen_port 2022
+#### set port number to 0 so TCL will automatically and reliably find
+#### a free port
+# set bespice_listen_port 0
 
 ###########################################################################
 #### TCL FILES TO LOAD AT STARTUP
 ###########################################################################
 #### list of tcl files to preload.
+# set tcl_files {}
+# lappend tcl_files [list ${XSCHEM_SHAREDIR}/ngspice_backannotate.tcl]
 # lappend tcl_files ${XSCHEM_SHAREDIR}/change_index.tcl
-lappend tcl_files ${XSCHEM_SHAREDIR}/ngspice_backannotate.tcl
+# lappend tcl_files ....
+
+###########################################################################
+#### TCL COMMANDS TO BE EXECUTED AFTER COMPLETING STARTUP
+###########################################################################
+#### some examples:
+# set postinit_commands {puts [xschem get version]}
+# set postinit_commands {
+#   .menubar.netlist configure -command {xschem netlist -erc; edit_netlist [xschem get netlist_name fallback]}
+#   .menubar.simulate configure -command {xschem netlist -erc; simulate_from_button}
+# }
+#
+#
+#### example: if a raw file already exists re-run a tran simulation.
+#### and schedule a waveform load at the end.
+# set postinit_commands {
+#   set rawfile $netlist_dir/[file rootname [xschem get current_name]].raw
+#   if {[file exists $rawfile]} {
+#     xschem netlist
+#     set sim(spice,default) 1 ;# ngspice control mode (no xterminal)
+#     set sim(spice,1,st) 0 ;# no status report
+#     set sim(spice,1,fg) 0 ;# background
+#     simulate_from_button {
+#        viewdata $execute(data,last)
+#        xschem raw read $rawfile tran
+#        xschem redraw
+#     }
+#   }
+# }
+
+###########################################################################
+#### TCL COMMANDS TO BE EXECUTED AFTER ANY NEW WINDOW CREATION
+###########################################################################
+#### this hook is useful to execute user UI code (like event binding,
+#### new buttons / menu entries etc).
+# set user_startup_commands {
+#   bind [xschem get current_win_path] <Key-plus>  {
+#     puts Hello
+#   }
+# }
+
+###########################################################################
+#### TCL COMMANDS TO BE EXECUTED AFTER GENERATING NETLIST
+###########################################################################
+#### default: not set.
+# set netlist_postprocess {textfile $netlist_dir/[xschem get netlist_name fallback]}
+
+###########################################################################
+#### TCL COMMANDS TO BE EXECUTED AFTER LOADING A NEW FILE
+###########################################################################
+#### default: not set.
+# set load_file_postprocess {puts [xschem get schname]}
+
+###########################################################################
+#### WEB URL DOWNLOAD HELPER APPLICATION
+###########################################################################
+#### used to download files from web: default: {curl -f -s -O -J}
+# set download_url_helper {curl -f -s -O -J}
+# set download_url_helper {wget -N --quiet --content-disposition}
 
 ###########################################################################
 #### XSCHEM TOOLBAR
 ###########################################################################
-#### default: not enabled.
-set toolbar_visible 1
+#### default: enabled, horizontal
+# set toolbar_visible 0
 # set toolbar_horiz   1
 
 ###########################################################################
 #### TABBED WINDOWS
 ###########################################################################
-# default: not enabled. Interface can be changed runtime if only one window 
-# or tab is open.
-set tabbed_interface 1
+#### default: enabled. Interface can be changed runtime if only one window 
+#### or tab is open.
+# set tabbed_interface 0
 
 ###########################################################################
-#### OR1 PDK SPECIFIC VARIABLES
+#### ALTERNATE SYMBOL PLACEMENT BROWSER
 ###########################################################################
+#### uses a new symbol placement widget. Default: not enabled (0)
+# set new_symbol_browser 1
+#### defines a list of paths to search for. If empty uses all xschem
+#### XSCHEM_LIBRARY_PATH paths. Default: empty
+# set new_symbol_browser_paths {... ... ...}
+#### defines the depth to descend into each path. default: 2
+# set new_symbol_browser_depth 3
+#### defines the extensions to search for. Default: {\.(sch|sym|tcl)$}
+# set new_symbol_browser_ext {\.(sch|sym|tcl)$}
 
-set PDK "$env(HOME)/.xschem/symbols/OR1"
-set LIB "$env(HOME)/.xschem/lib"
-puts stderr "PDK: $PDK"
-puts stderr "LIB: $LIB"
-append XSCHEM_LIBRARY_PATH :$PDK
+###########################################################################
+#### ALTERNATE LOAD FILE BROWSER
+###########################################################################
+#### uses a new file browser widget. Default: not enabled (0)
+# set new_file_browser 1
+#### defines a list of paths to search for. If empty uses all xschem
+#### XSCHEM_LIBRARY_PATH paths. Default: empty
+# set new_file_browser_paths {... ... ...}
+#### defines the depth to descend into each path. default: 2
+# set new_file_browser_depth 3
+#### defines the extensions to search for. Default: {\.(sch|sym|tcl)$}
+# set new_file_browser_ext {\.(sch|tcl)$}
+
+###########################################################################
+#### CASE INSENSITIVE SYMBOL LOOKUP
+###########################################################################
+#### this option might be useful on filesystems that are case insensitive and
+#### on designs ported from windows where case of file names does not matter.
+#### if this option is set symbol lookup will be case insensitive,
+#### so a symbol reference 'AMPLI.SYM' will match with 'ampli.sym' or
+#### Amply.sym on disk. File system must be case insensitive for this to work,
+#### like FAT32 or NTFS.
+#### Do not set this option if you don't know what you are doing.
+#### Default: not enabled (0)
+# set case_insensitive 1
+
+###########################################################################
+#### SHOW HIDDEN TEXTS
+###########################################################################
+#### This option shows text objects even if they have attribute 'hide=true' set
+#### default: 0 (not set) 
+# set show_hidden_texts 1
+
+###########################################################################
+#### USE CTRL MODIFIER TO OPERATE ON GRAPHS WITH MOUSE & KEYBOARD
+###########################################################################
+#### if enabled forces to hold Control key pressed to operate on graphs
+#### to prevent "graph event stealing to schematic"
+#### Default: 0 (not set)
+# set graph_use_ctrl_key 1
+
+###########################################################################
+#### HIDE GRAPHS IF NO SPICE DATA LOADED
+###########################################################################
+#### if enabled graphs will be hidden if no data is loaded.
+#### default: not enabled (0)
+# set hide_empty_graphs 0
+
+
+###########################################################################
+#### ATTACH HOOK FUNCTION TO CURSOR 2 MOVEMENT 
+###########################################################################
+#### if enabled whenever the cursor2 is moved the specified script is
+#### executed. Examples:
+####  set cursor_2_hook {conducting_devices 10e-3 nodraw}
+####  set cursor_2_hook {hilight_high_nets 0 1.8 nodraw}
+#### this can be used to add backannotation actions.
+
+###########################################################################
+#### LIVE BACKANNOTATION OF DATA AT CURSOR 2 (B) POSITION
+###########################################################################
+#### if enabled will backannotate values in schematic at cursor 'b' position
+#### in graph. Default: enabled (1)
+# set live_cursor2_backannotate 1
+
+###########################################################################
+#### INCLUDE ALL WINDOWS DRIVES IN XSCHEM PATHS
+###########################################################################
+#### This option will not include all windows drives in xschem paths
+#### Instead, additional drives can be added using XSCHEM_LIBRARY_PATH
+#### default: 1
+# set add_all_windows_drives 0
+
+###########################################################################
+#### FIX GRAPHIC PROBLEMS ON SOME DRIVERS/GPU CONFIGURATIONS
+###########################################################################
+#### if you see garbage on screen / graphic artifacts while editing with
+#### xschem try to set this to 1. Default: not enabled (0)
+# set fix_broken_tiled_fill 0
+
+###########################################################################
+#### FIX SOME REMOTE DESKTOP CONNECTION SOFTWARES NOT CORRECTLY REPORTING
+#### MOUSE COORDINATES ON KEYPRESS / KEYRELEASE EVENTS
+###########################################################################
+#### If you see strange behavior while using keybindings to create graphic 
+#### objects ('w', 'l', 't', 'r', ...) try to set this to 1.
+#### Default: not enabled (0)
+# set fix_mouse_coord 0
+
+#### redefine some variables to emulate Cadence UI / bindkeys
+# source /home/schippes/share/xschem/cadence_style_rc
+
+#### reset some font attributes (man 3tk font).
+# font configure TkFixedFont -size 14
+# font configure TkDefaultFont -size 14
+# font configure TkTextFont -size 14
+# font configure TkMenuFont -size 14
+set XSCHEM_LIBRARY_PATH {}
+append XSCHEM_LIBRARY_PATH :$env(PWD)
+
+set PDK "$env(HOME)/.klayout/salt/IP62/Technology/tech"
+set LIB "$env(HOME)/.klayout/salt/IP62/Technology/tech/models/ngspice"
+
+append XSCHEM_LIBRARY_PATH :${PDK}/symbols/Xschem
+append XSCHEM_LIBRARY_PATH :${PDK}/symbols/Xschem/IP62LIB
+
+append XSCHEM_LIBRARY_PATH :${XSCHEM_SHAREDIR}/xschem_library
+set XSCHEM_START_WINDOW $env(HOME)/.xschem/title_TR10.sch
+ 
+array unset dircolor
+set dircolor(IP62LIB$) blue
+set toolbar_visible 1 ;# Tool bar
+set tabbed_interface 1 ;# Tabbed windows
+#set persistent_command 1 ;# continue wiring
+set bespice_listen_port 2022
+

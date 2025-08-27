@@ -32,7 +32,7 @@ export SRC_DIR="$HOME/src"
 my_path=$(realpath "$0")
 my_dir=$(dirname "$my_path")
 export SCRIPT_DIR="$my_dir"
-export KLAYOUT_VERSION=0.29.10
+export KLAYOUT_VERSION=0.30.3
 
 
 # for Mac
@@ -77,36 +77,29 @@ cd $my_dir
 cp -f ./klayout/klayoutrc $HOME/.klayout/klayoutrc
 
 
-# setup OpenRule1umPDK
+# setup OpenIP62
 # ----------------------------------
 if [ ! -d "$HOME/.klayout/salt" ]; then
   mkdir -p $HOME/.klayout/salt
 fi
-if [ ! -d "$SRC_DIR/OpenRule1um" ]; then
+if [ ! -d "$SRC_DIR/OpenIP62" ]; then
   cd $SRC_DIR
-  git clone  https://github.com/mineda-support/OpenRule1um.git
-  cp -aR OpenRule1um $HOME/.klayout/salt/
+  git clone  https://github.com/ishi-kai/OpenIP62.git
+  cp -aR OpenIP62/AnagixLoader/ $HOME/.klayout/salt/
+  cp -aR OpenIP62/IP62/ $HOME/.klayout/salt/
 else
-  echo ">>>> Updating OpenRule1um"
-  cd $SRC_DIR/OpenRule1um || exit
-  git pull
-  if [ ! -d "$HOME/.klayout/salt/OpenRule1um" ]; then
-    mkdir -p $HOME/.klayout/salt/OpenRule1um
-  fi
-  cp -aR ./* $HOME/.klayout/salt/OpenRule1um/
-fi
-if [ ! -d "$SRC_DIR/AnagixLoader" ]; then
-  cd $SRC_DIR
-  git clone  https://github.com/mineda-support/AnagixLoader.git
-  cp -aR AnagixLoader $HOME/.klayout/salt/
-else
-  echo ">>>> Updating AnagixLoader"
-  cd $SRC_DIR/AnagixLoader || exit
+  echo ">>>> Updating OpenIP62"
+  cd $SRC_DIR/OpenIP62 || exit
   git pull
   if [ ! -d "$HOME/.klayout/salt/AnagixLoader" ]; then
     mkdir -p $HOME/.klayout/salt/AnagixLoader
   fi
-  cp -aR ./* $HOME/.klayout/salt/AnagixLoader/
+  cp -aR ./AnagixLoader/* $HOME/.klayout/salt/AnagixLoader/
+
+  if [ ! -d "$HOME/.klayout/salt/IP62" ]; then
+    mkdir -p $HOME/.klayout/salt/IP62
+  fi
+  cp -aR ./IP62/* $HOME/.klayout/salt/IP62/
 fi
 
 
