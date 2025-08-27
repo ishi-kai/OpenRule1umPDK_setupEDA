@@ -731,4 +731,3 @@ set toolbar_visible 1 ;# Tool bar
 set tabbed_interface 1 ;# Tabbed windows
 #set persistent_command 1 ;# continue wiring
 set bespice_listen_port 2022
-
