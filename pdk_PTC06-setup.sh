@@ -73,6 +73,9 @@ cp -aR ./xschem/symbols/* $HOME/.xschem/symbols/
 cp -aR ./xschem/lib/PTC06/* $HOME/.xschem/lib/
 
 cd $my_dir
+if [ ! -d "$HOME/.klayout" ]; then
+  mkdir -p $HOME/.klayout/
+fi
 cp -f ./klayout/klayoutrc $HOME/.klayout/klayoutrc
 
 # setup OpenRule1umPDK
