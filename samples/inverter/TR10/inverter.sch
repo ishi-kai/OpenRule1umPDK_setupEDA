@@ -1,9 +1,9 @@
-v {xschem version=3.4.5 file_version=1.2
-}
+v {xschem version=3.4.8RC file_version=1.3}
 G {}
 K {}
 V {}
 S {}
+F {}
 E {}
 N 190 -220 230 -220 {
 lab=Q}
@@ -41,15 +41,5 @@ C {devices/ipin.sym} 50 -170 0 0 {name=p1 lab=A}
 C {devices/opin.sym} 300 -170 0 0 {name=p2 lab=Q}
 C {devices/iopin.sym} 190 -340 0 1 {name=p3 lab=VDD}
 C {devices/iopin.sym} 190 -10 0 0 {name=p4 lab=VSS}
-C {primitives/pfet.sym} 170 -250 0 0 {name=M1 
-model=pmos
-W=3.3u
-L=1.0u
-m=1
-}
-C {primitives/nfet.sym} 170 -90 0 0 {name=M2 
-model=nmos
-W=2.0u
-L=1.0u
-m=1
-}
+C {IP62LIB/MP.sym} 150 -250 0 0 {name=XM1 model=PMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {IP62LIB/MN.sym} 150 -90 0 0 {name=XM2 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}

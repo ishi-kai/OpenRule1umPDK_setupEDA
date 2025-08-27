@@ -1,9 +1,9 @@
-v {xschem version=3.4.5 file_version=1.2
-}
+v {xschem version=3.4.8RC file_version=1.3}
 G {}
 K {}
 V {}
 S {}
+F {}
 E {}
 N 190 -220 230 -220 {
 lab=vout}
@@ -53,13 +53,6 @@ N 300 -170 300 -100 {
 lab=vout}
 N 300 -40 300 -10 {
 lab=GND}
-C {devices/code.sym} -250 -350 0 0 {name=PTC06_MODELS
-only_toplevel=true
-format="tcleval( @value )"
-value=".include $::LIB/mos.lib
-.include $::LIB/passive.lib
-.include $::LIB/diode.lib"
-spice_ignore=false}
 C {devices/vdd.sym} 190 -400 0 0 {name=l1}
 C {devices/gnd.sym} 190 -10 0 0 {name=l2}
 C {devices/vsource.sym} -210 -90 0 0 {name=Vdd value=5.0 savecurrent=false}
@@ -94,15 +87,10 @@ m=1
 value=10f
 footprint=1206
 device="ceramic capacitor"}
-C {primitives/pfet.sym} 170 -250 0 0 {name=M1 
-model=pmos
-W=3.3u
-L=1.0u
-m=1
-}
-C {primitives/nfet.sym} 170 -90 0 0 {name=M2 
-model=nmos
-W=2.0u
-L=1.0u
-m=1
-}
+C {devices/code.sym} -230 -360 0 0 {name=TR10_MODELS
+only_toplevel=true
+format="tcleval( @value )"
+value=".include $::LIB/../ip62_models"
+spice_ignore=false}
+C {IP62LIB/MP.sym} 150 -250 0 0 {name=XM1 model=PMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {IP62LIB/MN.sym} 150 -90 0 0 {name=XM2 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
