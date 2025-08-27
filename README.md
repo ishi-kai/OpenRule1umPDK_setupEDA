@@ -35,7 +35,8 @@ PDKを変えたい場合はPDK削除後、PDKのみインストールして下�
 ## macOSについて
 macOSは微妙なバージョンの違いによりインストールが失敗することがあります。  
 また、環境に直接各種ツールやライブラリをインストールするため開発環境への影響を与える可能性があります。それを嫌う場合は、VMWareのイメージを用意してありますので、そちらをお使いください。  
-- [Apple Silicon版OR1(フェニテック、東海理化)用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_OR1.tar.xz)
+- [Apple Silicon版OR1(フェニテック)用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_OR1.tar.xz)
+- [Apple Silicon版TR10(東海理化)用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_TR10.tar.xz)
 - [Apple Silicon版MF20用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_MF20.tar.xz)
 - [Apple Silicon版iHP用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_iHP130.tar.xz)
 - [Apple Silicon版TinyTapeout用イメージ](https://www.noritsuna.jp/download/ISHI-kai_EDA_vmware_TT.tar.xz)
@@ -46,7 +47,10 @@ macOSは微妙なバージョンの違いによりインストールが失敗す
 ## WSLイメージ
 WSLの環境によってはインストールすることができないことありますので、WSL用のイメージも用意しました。  
 
-- [WSL版OR1(フェニテック、東海理化)用イメージ](https://www.noritsuna.jp/download/ubuntu2204_ishi-kai_EDA.WSL.tar.xz)
+- [WSL版OR1(フェニテック)用イメージ](https://www.noritsuna.jp/download/ubuntu2204_ishi-kai_EDA.WSL.tar.xz)
+    - ID: ishi-kai
+    - Pass: ishi-kai
+- [WSL版TR10(東海理化)用イメージ](https://www.noritsuna.jp/download/ubuntu2204_ishi-kai_EDA.WSL_TR10.tar.xz)
     - ID: ishi-kai
     - Pass: ishi-kai
 
@@ -77,6 +81,8 @@ WSLの環境によってはインストールすることができないこと�
 - pMOS Cap (ACTEG07) 5.34fF(蓄積・強反転)/3.54fF(弱反転) (77pF/51pF, 120um/120um)
 
 ## 東海理化シャトルPDK
+
+
 
 
 ## ミニマルファブPDKの場合
