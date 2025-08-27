@@ -1,8 +1,9 @@
-v {xschem version=3.4.8RC file_version=1.2}
+v {xschem version=3.4.8RC file_version=1.3}
 G {}
 K {}
 V {}
 S {}
+F {}
 E {}
 L 4 480 -680 480 -80 {}
 L 4 700 -680 700 -80 {}
@@ -58,7 +59,7 @@ tc1=0
 tc2=0}
 C {DP.sym} 790 -620 0 0 {name=D1 model=DP m=1}
 C {DN.sym} 790 -460 0 0 {name=D2 model=DN m=1}
-C {AND2_X1.sym} 980 -600 0 0 {name=x1}
-C {BUF_X1.sym} 980 -460 0 0 {name=x2}
-C {NAND2.sym} 980 -320 0 0 {name=x3}
-C {OR2.sym} 980 -170 0 0 {name=x4}
+C {IP62_5_stdcell/AND2_X1.sym} 980 -600 0 0 {name=x1}
+C {IP62_5_stdcell/BUF_X1.sym} 980 -460 0 0 {name=x2}
+C {IP62_5_stdcell/NAND2.sym} 980 -320 0 0 {name=x3}
+C {IP62_5_stdcell/OR2.sym} 980 -170 0 0 {name=x4}
