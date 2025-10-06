@@ -44,6 +44,8 @@ if [ "$(uname)" == 'Darwin' ]; then
   case $VER in
     "14")
       export MAC_OS_NAME=Sonoma
+      export CC_VERSION=-14
+      export CXX_VERSION=-14
       ;;
     "15")
       export MAC_OS_NAME=Sequoia
