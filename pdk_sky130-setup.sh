@@ -15,6 +15,10 @@ export SCRIPT_DIR="$my_dir"
 export PDK=sky130A
 export VOLARE_H=6d4d11780c40b20ee63cc98e645307a9bf2b2ab8
 
+export TCL_VERSION=8.6.14
+export TK_VERSION=8.6.14
+export GTK_VERSION=3.24.42
+
 # for Mac
 if [ "$(uname)" == 'Darwin' ]; then
   VER=`sw_vers -productVersion | awk -F. '{ print $1 }'`
@@ -24,6 +28,13 @@ if [ "$(uname)" == 'Darwin' ]; then
       ;;
     "15")
       export MAC_OS_NAME=Sequoia
+      export CC_VERSION=-14
+      export CXX_VERSION=-14
+      ;;
+    "26")
+      export MAC_OS_NAME=Tahoe
+      export CC_VERSION=-15
+      export CXX_VERSION=-15
       ;;
     *)
       echo "Your Mac OS Version ($VER) is not supported."
@@ -32,11 +43,6 @@ if [ "$(uname)" == 'Darwin' ]; then
   esac
   export MAC_ARCH_NAME=`uname -m`
 fi
-export TCL_VERSION=8.6.14
-export TK_VERSION=8.6.14
-export GTK_VERSION=3.24.42
-export CC_VERSION=-14
-export CXX_VERSION=-14
 
 # --------
 echo ""
