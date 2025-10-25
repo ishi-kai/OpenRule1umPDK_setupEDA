@@ -83,13 +83,13 @@ WSLの環境によってはインストールすることができないこと�
 
 ## 東海理化シャトルPDK
 ### 各種PDKマニュアル
-- [リファレンスマニュアル](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS00_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_rev1.pdf)
-- [インストールマニュアル](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS01_%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB_rev1.pdf)
-- [回路simガイドライン_](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS02_%E5%9B%9E%E8%B7%AFsim%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3_rev1.pdf)
-- [レイアウト検証ガイドライン](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS03_%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E6%A4%9C%E8%A8%BC%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3_rev1.pdf)
-- [ESD保護素子ガイドライン](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS04_ESD%E4%BF%9D%E8%AD%B7%E7%B4%A0%E5%AD%90%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3_rev1.pdf)
-- [スタンダードセルラインナップ](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS05_%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%80%E3%83%BC%E3%83%89%E3%82%BB%E3%83%AB%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%8A%E3%83%83%E3%83%97_rev1.pdf)
-- [素子接続ガイドライン](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS06_%E7%B4%A0%E5%AD%90%E6%8E%A5%E7%B6%9A%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3_rev1.pdf)
+- [リファレンスマニュアル](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS00_%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB.pdf)
+- [インストールマニュアル](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS01_%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%83%9E%E3%83%8B%E3%83%A5%E3%82%A2%E3%83%AB.pdf)
+- [回路simガイドライン_](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS02_%E5%9B%9E%E8%B7%AFsim%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3.pdf)
+- [レイアウト検証ガイドライン](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS03_%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E6%A4%9C%E8%A8%BC%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3.pdf)
+- [ESD保護素子ガイドライン](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS04_ESD%E4%BF%9D%E8%AD%B7%E7%B4%A0%E5%AD%90%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3.pdf)
+- [スタンダードセルラインナップ](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS05_%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%80%E3%83%BC%E3%83%89%E3%82%BB%E3%83%AB%E3%83%A9%E3%82%A4%E3%83%B3%E3%83%8A%E3%83%83%E3%83%97.pdf)
+- [素子接続ガイドライン](https://github.com/ishi-kai/OpenIP62/blob/main/IP62/Technology/doc/OS06_%E7%B4%A0%E5%AD%90%E6%8E%A5%E7%B6%9A%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3.pdf)
 
 ### 抵抗値、容量の計算
 抵抗値やコンデンサの容量は下記のツールで計算してください。  
