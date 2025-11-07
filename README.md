@@ -27,6 +27,9 @@ PDKを変更する場合は、一度削除してから再度インストール�
 ### TinyTapeout PDKの場合
 `bash pdk_sky130-setup.sh`
 
+### Wafer.space PDKの場合
+`bash pdk_gf180-setup.sh`
+
 ## PDKの削除
 `bash uninstall.sh`
 

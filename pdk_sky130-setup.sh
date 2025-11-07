@@ -60,7 +60,7 @@ else
 	cd "$SRC_DIR/volare" || exit
 	git pull
 fi
-python3 -m pip install --upgrade --no-cache-dir volare
+python3 -m pip install --upgrade --no-cache-dir volare --break-system-packages
 
 # Copy KLayout Configurations
 # ----------------------------------
@@ -93,7 +93,7 @@ if [ "$(uname)" == 'Darwin' ]; then
 	volare enable --pdk sky130 $VOLARE_H
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
 	OS='Linux'
-	pip install sky130 flayout
+	pip install sky130 flayout --break-system-packages
 	volare enable --pdk sky130 $VOLARE_H
 elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW32_NT' ]; then
 	OS='Cygwin'
