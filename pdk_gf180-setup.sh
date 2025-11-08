@@ -133,6 +133,10 @@ else
 fi
 cd "$TOOLS_ROOT/gf180mcu-precheck" || exit
 make clone-pdk
+cd $my_dir
+cp -f ./gf180/run_precheck.sh $TOOLS_ROOT/gf180mcu-precheck/
+chmod +x  $TOOLS_ROOT/gf180mcu-precheck/run_precheck.sh
+
 
 # Finished
 # --------
