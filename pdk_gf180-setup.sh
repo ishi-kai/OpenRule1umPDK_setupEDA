@@ -100,6 +100,8 @@ cp -f $PDK_ROOT/$PDK/libs.tech/magic/$PDK.magicrc $HOME/.magicrc
 #cp -rf $PDK_ROOT/$PDK/libs.tech/klayout/lvs $HOME/.klayout/
 #cp -rf $PDK_ROOT/$PDK/libs.tech/klayout/pymacros $HOME/.klayout/
 cp -rf $PDK_ROOT/$PDK/libs.tech/klayout/tech $HOME/.klayout/
+cp -rf $PDK_ROOT/$PDK/libs.tech/klayout/tech $HOME/.klayout/
+cp -f $my_dir/gf180/tech/gf180mcu.lyp  $HOME/.klayout/tech/
 cp -f $PDK_ROOT/$PDK/libs.ref/gf180mcu_fd_io/gds/gf180mcu_fd_io.gds $HOME/.klayout/libraries/
 cp -f $PDK_ROOT/$PDK/libs.ref/gf180mcu_fd_io/gds/gf180mcu_ef_io.gds $HOME/.klayout/libraries/
 cp -f $PDK_ROOT/$PDK/libs.ref/gf180mcu_fd_sc_mcu7t5v0/gds/gf180mcu_fd_sc_mcu7t5v0.gds $HOME/.klayout/libraries/
