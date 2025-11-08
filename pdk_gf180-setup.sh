@@ -7,6 +7,7 @@
 # Define setup environment
 # ------------------------
 export PDK_ROOT="$HOME/pdk"
+export TOOLS_ROOT="$HOME/tools"
 export MY_STDCELL=gf180mcu_fd_sc_mcu7t5v0
 export SRC_DIR="$HOME/src"
 my_path=$(realpath "$0")
@@ -25,6 +26,7 @@ echo ""
 # ----------------------------------
 if [ ! -d "$HOME/.klayout" ]; then
 	mkdir $HOME/.klayout
+	mkdir $HOME/.klayout/libraries/
 	cp -f gf180/klayoutrc $HOME/.klayout/
 fi
 
@@ -66,14 +68,26 @@ fi
 
 # Install wafer.space PDK
 # -----------------------------------
-if [ ! -d "$PDK_ROOT/gf180mcu" ]; then
-  git clone https://github.com/wafer-space/gf180mcu.git "$PDK_ROOT/gf180mcu"
+if [ ! -d "$TOOLS_ROOT" ]; then
+  mkdir $TOOLS_ROOT
+fi
+if [ ! -d "$TOOLS_ROOT/gf180mcu" ]; then
+  git clone https://github.com/wafer-space/gf180mcu.git "$TOOLS_ROOT/gf180mcu"
 else
   echo ">>>> Updating gf180mcu"
-  cd "$PDK_ROOT/gf180mcu" || exit
+  cd "$TOOLS_ROOT/gf180mcu" || exit
   git pull
 fi
-cp -aR $PDK_ROOT/gf180mcu/$PDK/* $PDK_ROOT/$PDK/
+if [ ! -d "$TOOLS_ROOT/gf180mcu-project-template" ]; then
+  git clone https://github.com/wafer-space/gf180mcu-project-template.git "$TOOLS_ROOT/gf180mcu-project-template"
+else
+  echo ">>>> Updating gf180mcu-project-template"
+  cd "$TOOLS_ROOT/gf180mcu-project-template" || exit
+  git pull
+fi
+cp -aR $TOOLS_ROOT/gf180mcu/$PDK/* $PDK_ROOT/$PDK/
+cp -f $TOOLS_ROOT/gf180mcu-project-template/ip/gf180mcu_ws_ip__id/gds/gf180mcu_ws_ip__id.gds $HOME/.klayout/libraries/
+
 
 # Copy various things
 # -------------------
@@ -86,8 +100,8 @@ cp -f $PDK_ROOT/$PDK/libs.tech/magic/$PDK.magicrc $HOME/.magicrc
 #cp -rf $PDK_ROOT/$PDK/libs.tech/klayout/lvs $HOME/.klayout/
 #cp -rf $PDK_ROOT/$PDK/libs.tech/klayout/pymacros $HOME/.klayout/
 cp -rf $PDK_ROOT/$PDK/libs.tech/klayout/tech $HOME/.klayout/
-cp -f $PDK_ROOT/$PDK/libs.ref/gf180mcu_fd_io/gds/*.gds $HOME/.klayout/libraries/
-cp -f $PDK_ROOT/$PDK/libs.ref/gf180mcu_fd_pr/gds/*.gds $HOME/.klayout/libraries/
+cp -f $PDK_ROOT/$PDK/libs.ref/gf180mcu_fd_io/gds/gf180mcu_fd_io.gds $HOME/.klayout/libraries/
+cp -f $PDK_ROOT/$PDK/libs.ref/gf180mcu_fd_io/gds/gf180mcu_ef_io.gds $HOME/.klayout/libraries/
 cp -f $PDK_ROOT/$PDK/libs.ref/gf180mcu_fd_sc_mcu7t5v0/gds/gf180mcu_fd_sc_mcu7t5v0.gds $HOME/.klayout/libraries/
 cp -f $PDK_ROOT/$PDK/libs.ref/gf180mcu_fd_sc_mcu9t5v0/gds/gf180mcu_fd_sc_mcu9t5v0.gds $HOME/.klayout/libraries/
 
@@ -101,13 +115,24 @@ echo 'puts stderr "180MCU_STDCELLS: $180MCU_STDCELLS"' >> "$HOME/.xschem/xschemr
 
 # Install precheck tool
 # -----------------------------------
-if [ ! -d "$PDK_ROOT/gf180mcu-precheck" ]; then
-  git clone https://github.com/wafer-space/gf180mcu-precheck.git "$PDK_ROOT/gf180mcu-precheck"
+if [ ! -d "$TOOLS_ROOT/gf180mcu-precheck" ]; then
+  sudo apt install nix-shell
+  git clone https://github.com/wafer-space/gf180mcu-precheck.git "$TOOLS_ROOT/gf180mcu-precheck"
+
+  git clone https://github.com/librelane/librelane.git "$TOOLS_ROOT/gf180mcu-precheck/librelane"
+  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --prefer-upstream-nix --no-confirm --extra-conf " \
+      extra-substituters = https://nix-cache.fossi-foundation.org \
+      extra-trusted-public-keys = nix-cache.fossi-foundation.org:3+K59iFwXqKsL7BNu6Guy0v+uTlwsxYQxjspXzqLYQs= \
+  "
 else
   echo ">>>> Updating gf180mcu-precheck"
-  cd "$PDK_ROOT/gf180mcu-precheck" || exit
+  cd "$TOOLS_ROOT/gf180mcu-precheck" || exit
+  git pull
+  cd "$TOOLS_ROOT/gf180mcu-precheck/librelane" || exit
   git pull
 fi
+cd "$TOOLS_ROOT/gf180mcu-precheck" || exit
+make clone-pdk
 
 # Finished
 # --------
