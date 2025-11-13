@@ -1,3 +1,8 @@
+  
+  
+**最新環境は[OpenEDA-PDK_SetupScript](https://github.com/ishi-kai/OpenEDA-PDK_SetupScript)に移動しました。**  
+  
+  
 # 何か？
 ISHI会版OpenMPW用のレイアウトを作るための環境構築用スクリプトです。  
 WSL2 (Windows Subsystem for Linux)上のUbuntu22.04 & Ubuntu24.04とUbuntu22.04 & Ubuntu24.04とmacOSで動作します。  
